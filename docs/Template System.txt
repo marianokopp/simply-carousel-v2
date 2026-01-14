@@ -1,0 +1,557 @@
+# 📐 Sistema de Templates - Simply Carousel v2
+
+## 🎯 Visión General
+
+El sistema de templates de Simply Carousel es una arquitectura declarativa que permite crear diseños visuales profesionales para carruseles de Instagram mediante configuración JSON. Cada template define completamente cómo se debe renderizar el contenido en un canvas de 1080x1350px.
+
+---
+
+## 🏗️ Arquitectura de Capas
+
+El sistema funciona en **4 capas jerárquicas** (Z-Index):
+
+```
+┌─────────────────────────────────────┐
+│  Layer 3: Global Identity (z:10)   │  ← Logo, Autor, Website
+├─────────────────────────────────────┤
+│  Layer 2: Text Slots (z:8-9)       │  ← Título, Body, CTA
+├─────────────────────────────────────┤
+│  Layer 1: Design Elements (z:2-7)  │  ← Formas, SVGs, Decoraciones
+├─────────────────────────────────────┤
+│  Layer 0: Background (z:0)          │  ← Color sólido/Gradiente
+└─────────────────────────────────────┘
+```
+
+---
+
+## 📦 Estructura del Template
+
+### **1. Metadata & Configuración Base**
+
+```typescript
+{
+  id: 'minimal-swiss',                    // ID único
+  metadata: {
+    name: 'Minimal Swiss',                // Nombre para UI
+    category: 'minimal',                  // Categoría para filtrado
+    colorSupport: 2,                      // 0=sin brand, 1=primary, 2=primary+secondary
+    description: '...',                   // Descripción para users
+    tags: ['minimal', 'clean', 'swiss']   // Tags para búsqueda
+  },
+  
+  viewport: {
+    width: 1080,                          // Ancho del canvas
+    height: 1350,                         // Alto del canvas (Instagram ratio)
+    safeMargin: 60,                       // Margen seguro (no se corta en preview)
+  }
+}
+```
+
+---
+
+### **2. Layer 0: Background**
+
+Define el fondo del slide.
+
+```typescript
+background: {
+  type: 'solid',                          // 'solid' | 'gradient' | 'image'
+  colorVar: 'brand_primary',              // Variable de color del BrandKit
+  
+  // Opcional: Si type === 'image'
+  imageSlot?: {
+    enabled: true,
+    opacity: 0.4,                         // Transparencia de la imagen
+    blendMode: 'multiply',                // Modo de mezcla
+    overlayColor: '#000000',              // Color de overlay
+    overlayOpacity: 0.3                   // Opacidad del overlay
+  }
+}
+```
+
+**Casos de uso:**
+- `solid` → Fondos limpios, minimalistas
+- `gradient` → Fondos modernos con degradado
+- `image` → Contenido visual con fotos de fondo
+
+---
+
+### **3. Layer 1: Design Elements**
+
+Elementos decorativos SVG y formas geométricas.
+
+#### **Tipos disponibles:**
+
+**a) SVG Element** (para íconos, ilustraciones)
+```typescript
+{
+  id: 'arrow-decoration',
+  type: 'svg',
+  svgCode: '<svg>...</svg>',              // Código SVG inline
+  x: 100,                                 // Posición X
+  y: 200,                                 // Posición Y
+  width: 200,                             // Ancho
+  height: 200,                            // Alto
+  tinted: true,                           // Si aplica color de marca
+  rotation: 45,                           // Rotación en grados
+  opacity: 1,                             // Transparencia 0-1
+  zIndex: 3                               // Orden de apilamiento
+}
+```
+
+**b) Circle Element**
+```typescript
+{
+  id: 'accent-circle',
+  type: 'circle',
+  cx: 540,                                // Centro X
+  cy: 675,                                // Centro Y
+  radius: 300,                            // Radio
+  fill: 'brand_primary',                  // Color de relleno
+  stroke: '#FFFFFF',                      // Color de borde (opcional)
+  strokeWidth: 4,                         // Grosor de borde
+  opacity: 0.1,
+  zIndex: 2
+}
+```
+
+**c) Rectangle Element**
+```typescript
+{
+  id: 'header-bar',
+  type: 'rectangle',
+  x: 0,
+  y: 0,
+  width: 1080,
+  height: 200,
+  fill: 'brand_secondary',
+  borderRadius: 0,                        // 0 = cuadrado, >0 = redondeado
+  opacity: 1,
+  zIndex: 2
+}
+```
+
+**d) Line Element**
+```typescript
+{
+  id: 'accent-line',
+  type: 'line',
+  x1: 60,                                 // Punto inicial X
+  y1: 250,                                // Punto inicial Y
+  x2: 200,                                // Punto final X
+  y2: 250,                                // Punto final Y
+  stroke: 'brand_primary',                // Color de línea
+  strokeWidth: 3,                         // Grosor
+  opacity: 1,
+  zIndex: 2
+}
+```
+
+**e) Path Element** (SVG paths)
+```typescript
+{
+  id: 'wave-shape',
+  type: 'path',
+  d: 'M0,100 Q270,50 540,100 T1080,100 L1080,0 L0,0 Z',
+  fill: 'brand_primary',
+  opacity: 0.2,
+  zIndex: 1
+}
+```
+
+---
+
+### **4. Layer 2: Text Slots**
+
+Slots de texto configurables por tipo de slide.
+
+#### **Text Slots Disponibles:**
+
+```typescript
+text_slots: {
+  slide_number: TextSlotConfig,           // Número de slide (1, 2, 3...)
+  label: TextSlotConfig,                  // Etiqueta/categoría
+  subtitle: TextSlotConfig,               // Subtítulo
+  title: TextSlotConfig,                  // Título principal
+  body: TextSlotConfig,                   // Contenido/cuerpo
+  cta_text: TextSlotConfig                // Call-to-action
+}
+```
+
+#### **Configuración de Text Slot:**
+
+```typescript
+title: {
+  enabled: true,                          // Si se muestra o no
+  
+  // Posición y dimensiones
+  x: 60,                                  // Posición X (desde la izquierda)
+  y: 300,                                 // Posición Y (desde arriba)
+  width: 960,                             // Ancho del contenedor
+  height: 200,                            // Alto del contenedor
+  
+  // Tipografía
+  fontFamily: 'Inter',                    // Fuente
+  fontSize: 56,                           // Tamaño de fuente base
+  fontWeight: 700,                        // Peso (400=normal, 700=bold)
+  color: 'auto-contrast',                 // Color (hex o 'auto-contrast')
+  
+  // Alineación
+  textAlign: 'left',                      // 'left' | 'center' | 'right'
+  verticalAlign: 'top',                   // 'top' | 'middle' | 'bottom'
+  
+  // Espaciado
+  lineHeight: 1.2,                        // Alto de línea (1 = sin espacio extra)
+  letterSpacing: -1,                      // Espacio entre letras (px)
+  
+  // Transformaciones
+  textTransform: 'none',                  // 'none' | 'uppercase' | 'lowercase' | 'capitalize'
+  
+  // Auto-ajuste
+  autoFit: true,                          // Si ajusta automáticamente el tamaño
+  minFontSize: 32,                        // Tamaño mínimo si autoFit=true
+  maxLines: 3,                            // Máximo de líneas permitidas
+  
+  // Visuales
+  zIndex: 9,                              // Orden de apilamiento
+  opacity: 1,                             // Transparencia (opcional)
+  
+  // Estilos especiales (opcionales)
+  emphasisStyle: {                        // Para palabras enfatizadas
+    fontWeight: 700,
+    color: 'brand_primary',
+    backgroundColor: 'transparent',
+    backgroundOpacity: 0
+  },
+  
+  textShadow: {                           // Sombra de texto (opcional)
+    enabled: true,
+    offsetX: 2,
+    offsetY: 2,
+    blur: 4,
+    color: 'rgba(0,0,0,0.3)'
+  }
+}
+```
+
+#### **Características Especiales:**
+
+**Auto-Contrast:** Si `color: 'auto-contrast'`, el sistema calcula automáticamente el color del texto para cumplir WCAG AAA contra el fondo (blanco o negro según luminosidad).
+
+**Auto-Fit:** Si `autoFit: true`, el texto se reduce automáticamente para caber en el contenedor, respetando `minFontSize` y `maxLines`.
+
+**Number Format:** Para `slide_number`, puedes definir formato:
+- `'01'` → 01, 02, 03...
+- `'1'` → 1, 2, 3...
+- `'1/10'` → 1/10, 2/10, 3/10...
+
+**Prefix:** Para author/website, ej: `prefix: '@'` → `@usuario`
+
+---
+
+### **5. Layer 3: Global Slots**
+
+Elementos de identidad que aparecen en todos los slides.
+
+```typescript
+global_slots: {
+  logo: {
+    enabled: true,
+    x: 60,
+    y: 1220,
+    width: 80,
+    height: 80,
+    fit: 'contain',                       // 'contain' | 'cover'
+    borderRadius: 0,                      // 0 = cuadrado, >0 = redondeado
+    opacity: 1,
+    zIndex: 10
+  },
+  
+  author: {
+    enabled: true,
+    x: 160,
+    y: 1235,
+    width: 400,
+    height: 30,
+    fontFamily: 'Inter',
+    fontSize: 18,
+    fontWeight: 600,
+    color: '#000000',
+    textAlign: 'left',
+    verticalAlign: 'middle',
+    lineHeight: 1,
+    letterSpacing: 0,
+    prefix: '@',                          // Aparece como "@nombre"
+    opacity: 1,
+    zIndex: 10
+  },
+  
+  website: {
+    enabled: true,
+    x: 160,
+    y: 1270,
+    width: 400,
+    height: 25,
+    fontFamily: 'Inter',
+    fontSize: 14,
+    fontWeight: 400,
+    color: '#666666',
+    textAlign: 'left',
+    verticalAlign: 'middle',
+    lineHeight: 1,
+    letterSpacing: 0,
+    opacity: 1,
+    zIndex: 10
+  }
+}
+```
+
+---
+
+### **6. Variations**
+
+Templates pueden tener **variaciones** para diferentes tipos de slides:
+
+```typescript
+variations: {
+  // Primera slide (Hook) - Título grande centrado
+  hook: {
+    text_slots: {
+      slide_number: { enabled: false },   // Ocultar número en hook
+      title: {
+        fontSize: 72,                     // Más grande
+        textAlign: 'center',              // Centrado
+        x: 90,
+        y: 500,
+        width: 900,
+        height: 350
+      },
+      body: { enabled: false }            // Sin body en hook
+    }
+  },
+  
+  // Última slide (CTA) - Call-to-action destacado
+  cta: {
+    text_slots: {
+      slide_number: { enabled: false },
+      title: {
+        fontSize: 56,
+        textAlign: 'center',
+        x: 90,
+        y: 450,
+        width: 900,
+        height: 250
+      },
+      body: { enabled: false },
+      cta_text: {
+        enabled: true,                    // Activar CTA text
+        fontSize: 22,
+        textAlign: 'center',
+        x: 140,
+        y: 750,
+        width: 800,
+        height: 80,
+        color: 'brand_primary'
+      }
+    }
+  }
+}
+```
+
+---
+
+## 🎨 Sistema de Colores
+
+### **Color Variables**
+
+Usa variables en lugar de colores hardcodeados:
+
+```typescript
+'brand_primary'    // Se reemplaza por brandKit.primary
+'brand_secondary'  // Se reemplaza por brandKit.secondary
+'auto-contrast'    // Se calcula automáticamente (blanco/negro)
+'#FF5733'          // Hex fijo (no editable por usuario)
+```
+
+### **Multi-Color SVGs**
+
+SVGs pueden usar clases CSS para múltiples colores de marca:
+
+```html
+<svg viewBox="0 0 100 100">
+  <path class="brand-primary" fill="currentColor" d="..."/>
+  <circle class="brand-secondary" fill="currentColor" cx="50" cy="50" r="30"/>
+</svg>
+```
+
+El renderer reemplazará `currentColor` con el color de marca correspondiente.
+
+---
+
+## 🔄 Flujo de Renderizado
+
+```
+1. Cargar Template
+   ↓
+2. Determinar tipo de slide (hook, body, cta)
+   ↓
+3. Aplicar variation si existe
+   ↓
+4. Reemplazar color variables con BrandKit
+   ↓
+5. Calcular auto-contrast si es necesario
+   ↓
+6. Renderizar capas en orden (0 → 3)
+   ↓
+7. Aplicar auto-fit a textos
+   ↓
+8. Exportar Canvas como PNG/JPEG
+```
+
+---
+
+## 📋 Template Completo de Ejemplo
+
+Ver archivo adjunto: `minimal-swiss-example.json`
+
+---
+
+## 🎯 Mejores Prácticas
+
+### **1. Spacing & Margins**
+
+```typescript
+// ✅ CORRECTO - Respetar safeMargin
+viewport: { safeMargin: 60 }
+text_slots: {
+  title: { x: 60, y: 300, width: 960 }  // 60px del borde
+}
+
+// ❌ INCORRECTO - Muy cerca del borde
+text_slots: {
+  title: { x: 10, y: 10, width: 1060 }  // Instagram puede cortar
+}
+```
+
+### **2. Typography**
+
+```typescript
+// ✅ CORRECTO - Jerarquía clara
+title: { fontSize: 56, fontWeight: 700 }
+body: { fontSize: 28, fontWeight: 400 }
+
+// ❌ INCORRECTO - Sin contraste visual
+title: { fontSize: 32, fontWeight: 400 }
+body: { fontSize: 30, fontWeight: 400 }
+```
+
+### **3. Auto-Fit**
+
+```typescript
+// ✅ CORRECTO - Permite ajuste flexible
+title: {
+  fontSize: 56,
+  autoFit: true,
+  minFontSize: 32,
+  maxLines: 3
+}
+
+// ⚠️ CONSIDERAR - Sin ajuste (puede truncarse)
+title: {
+  fontSize: 56,
+  autoFit: false
+}
+```
+
+### **4. Z-Index Strategy**
+
+```
+10: Global slots (logo, author, website)
+9:  Títulos principales
+8:  Body text, elementos secundarios
+2-7: Design elements decorativos
+1:  Elementos de fondo sutiles
+0:  Background
+```
+
+### **5. Color Support**
+
+```typescript
+// Si template solo usa 1 color
+metadata: { colorSupport: 1 }  // UI oculta selector secondary
+
+// Si template usa 2+ colores
+metadata: { colorSupport: 2 }  // UI muestra ambos selectores
+```
+
+---
+
+## 🚀 Roadmap v2
+
+### **Nuevas Características Propuestas:**
+
+1. **Animation Support**
+   ```typescript
+   animations?: {
+     title: {
+       type: 'fade-in' | 'slide-up' | 'scale',
+       duration: 800,  // ms
+       delay: 200
+     }
+   }
+   ```
+
+2. **Responsive Breakpoints**
+   ```typescript
+   breakpoints: {
+     mobile: { fontSize: 48 },
+     desktop: { fontSize: 56 }
+   }
+   ```
+
+3. **Theme Variants**
+   ```typescript
+   themes: {
+     light: { background: '#FFFFFF', textColor: '#000000' },
+     dark: { background: '#000000', textColor: '#FFFFFF' }
+   }
+   ```
+
+4. **Smart Layouts**
+   - Auto-detección de contenido largo
+   - Redistribución automática de elementos
+
+5. **Component Library**
+   - Headers pre-diseñados
+   - Footers reutilizables
+   - Icon sets
+
+---
+
+## 📊 Métricas de Templates
+
+### **Performance:**
+- Render time: < 500ms por slide
+- Canvas size: 1080x1350px @ 72dpi
+- Export: PNG/JPEG @ 90% quality
+
+### **Compatibilidad:**
+- Instagram Feed: 1080x1350px (4:5)
+- Instagram Stories: Adaptable con crop
+- LinkedIn: Compatible con ajustes
+
+---
+
+## 🛠️ Herramientas de Desarrollo
+
+**Template Validator:** Verifica estructura y valores
+**Preview Generator:** Renderiza previews automáticos
+**Color Contrast Checker:** Valida accesibilidad WCAG
+**Export Pipeline:** Genera assets optimizados
+
+---
+
+**Versión:** 2.0.0  
+**Última actualización:** Enero 2026  
+**Autor:** Simply Carousel Team
+

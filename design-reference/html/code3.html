@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Final Preview &amp; Export - Simply Carousel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#607AFB", "background-light": "#f5f6f8", "background-dark": "#0f1323"}, fontFamily: {display: "Inter"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#101618] dark:text-white transition-colors duration-200">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e5e7eb] dark:border-[#2d3a43] bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-6">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z"></path>
+</svg>
+</div>
+<h2 class="text-[#101618] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Simply Carousel</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<div class="flex items-center gap-9">
+<a class="text-[#101618] dark:text-[#a0b0bb] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-[#101618] dark:text-[#a0b0bb] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">My Carousels</a>
+<a class="text-[#101618] dark:text-[#a0b0bb] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Templates</a>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#005280] transition-colors">
+<span class="truncate">New Carousel</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-[#e5e7eb] dark:border-[#2d3a43]" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuABToJ9-TkxYq8H5MBovA09ShaYfZnFMOhTGVR8xqQd_mafvOkwSJkujVW7gvl4guFE1KZOPwfJdv5sW6srhZTf8jMxfwUwSiP6Wt8SUS1tQcLoRQyiJXc2v6DYTCoWqd15KdyfZgndgSKKtVW-XrmJDB7umxDW2WcsLkRtZGg7J3M0qRFpj9qWo_92JZfd-wZI9mMbHzVEhLObFN589bZLgk90XC_Jjzx6neDwyWGF9GWA0WT_KJFgsEsy2oLnkMQ1RSfqwr_rtw");'></div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto flex flex-col min-h-[calc(100vh-65px)]">
+<!-- Success Message Header -->
+<div class="w-full pt-10 pb-6 text-center">
+<div class="inline-flex items-center justify-center p-2 mb-4 bg-green-100 dark:bg-green-900/30 rounded-full text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-3xl">check_circle</span>
+</div>
+<h1 class="text-[#101618] dark:text-white tracking-tight text-[32px] font-bold leading-tight px-4">¡Tu carrusel está listo!</h1>
+<p class="text-[#5e7c8d] dark:text-[#a0b0bb] text-base font-normal leading-normal mt-2">Revisa tu contenido antes de descargar el paquete final</p>
+</div>
+<div class="flex flex-1 gap-8 px-10 pb-12 items-start">
+<!-- Main Gallery Area (Scrollable) -->
+<div class="flex-1 min-w-0 bg-white dark:bg-[#1a2b34] rounded-xl border border-[#e5e7eb] dark:border-[#2d3a43] shadow-sm overflow-hidden flex flex-col">
+<div class="p-6 border-b border-[#e5e7eb] dark:border-[#2d3a43] flex items-center justify-between">
+<h3 class="font-bold text-lg">Sequence Preview (7 Slides)</h3>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg border border-[#e5e7eb] dark:border-[#2d3a43] hover:bg-gray-50 dark:hover:bg-[#253945]">
+<span class="material-symbols-outlined text-sm">zoom_in</span>
+</button>
+<button class="p-2 rounded-lg border border-[#e5e7eb] dark:border-[#2d3a43] hover:bg-gray-50 dark:hover:bg-[#253945]">
+<span class="material-symbols-outlined text-sm">fullscreen</span>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-x-auto hide-scrollbar p-8">
+<div class="flex items-stretch gap-6 min-w-max">
+<!-- Slide 1 -->
+<div class="flex flex-col gap-4 w-72">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg shadow-lg border border-[#e5e7eb] dark:border-[#2d3a43] transform hover:scale-[1.02] transition-transform duration-200" data-alt="High quality carousel slide 1 visual design" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCdc3u_Y8PKTqeTa-8KZ7HwroMIp-tI2AhiPwpsc6KqgVR9K6vR8WrMVGr7KABHCG-evVZ8FAeye7thx-ye2aRmTTTMV_wbk3836d4VCGg7wYlhcqKNZwlR1AMVHXAa-vSQR2ucrzgWnOtSIilqBrqUOTGlzall_hEdXrQvvga17owcHtUGSB43J_04Ao_V57tML4260bdB1_LA1ZQEogjSFEB3cuFmYwqRL1926h1lQK53utokDhznHyshk04a0TbaVfhgo5fSMg");'></div>
+<div class="px-1">
+<p class="text-[#101618] dark:text-white text-sm font-semibold">01 / Slide</p>
+<p class="text-[#5e7c8d] dark:text-[#a0b0bb] text-xs">Headline &amp; Introduction</p>
+</div>
+</div>
+<!-- Slide 2 -->
+<div class="flex flex-col gap-4 w-72">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg shadow-lg border border-[#e5e7eb] dark:border-[#2d3a43] transform hover:scale-[1.02] transition-transform duration-200" data-alt="High quality carousel slide 2 visual design" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCzmg-oVE0TRb_k_Ofe5_L0cJ3r0Nd1NhpKfwQwnosym8-z3FG4HIx2s0ycPApKu-kgKnp6yMmz9DCvREEKQGjTZDt3aFeiRMOV25YfdAhY8MdwCgECaad-dbE_tUzCCpesIr0gHpQa3e-O7AllPFAZSCgQz0PwaiJMmS6p8p4ofuON1vwBoLWhxVTF8szT_PTLzt6PaS7vV_13zbceBAXhYTSIIShBgOAoSk-gATXrIebjdEoN_l2Z9_9waRtascYGNch0Ux2Rrw");'></div>
+<div class="px-1">
+<p class="text-[#101618] dark:text-white text-sm font-semibold">02 / Slide</p>
+<p class="text-[#5e7c8d] dark:text-[#a0b0bb] text-xs">Problem Description</p>
+</div>
+</div>
+<!-- Slide 3 -->
+<div class="flex flex-col gap-4 w-72">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg shadow-lg border border-[#e5e7eb] dark:border-[#2d3a43] transform hover:scale-[1.02] transition-transform duration-200" data-alt="High quality carousel slide 3 visual design" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBu4_znWwt4Ri94guW6PTLPpminGJTJBAB4uqgQ7D1ksc0C0svaMObN75MDpZqx7IZYwmAwnDCWv_VcfY_cAu2gobjiXETysAecPuGuyx5S4JwEKqPdY0RWkN-KFgTRaTTA3CDCgoOZbdC_wXL4bdHsEApGNX5mqceEEBY2jPpdHr_DwKN-x-V5idH81hHfL9IuJtpJ2hqNaGGEEWClLlBmbKkVibBKUZKBgGDt6DPkLKrHGT1J4gZ6M_dSxkX_0sczfbtxVKeqOA");'></div>
+<div class="px-1">
+<p class="text-[#101618] dark:text-white text-sm font-semibold">03 / Slide</p>
+<p class="text-[#5e7c8d] dark:text-[#a0b0bb] text-xs">The AI Solution</p>
+</div>
+</div>
+<!-- Slide 4 -->
+<div class="flex flex-col gap-4 w-72">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg shadow-lg border border-[#e5e7eb] dark:border-[#2d3a43] transform hover:scale-[1.02] transition-transform duration-200" data-alt="High quality carousel slide 4 visual design" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA_AJAeyBpqOYsuwwbG_B4npm0MPBP8uxBWaPFis7t6rIAGCwCPIJX7DwbJvoxHIyzo78Puq0iA6bgbsoiXbTfuamFfX76gqJOwbMHxGTFQxLb-3gzhS8XtCqLmR-nzlgF8o2tFIFdmB7W9FHm0sTycIhfT-5oYAGsdnH1SsI-Odrk2HLTtzFdLD8zns1oXmyMihukfAhIM3j92ZwVPxmgehSAnJkai9WsRAxnT8pE1U21QTzLyI41YOXhX11nQXMoQ7BXp2GYjYQ");'></div>
+<div class="px-1">
+<p class="text-[#101618] dark:text-white text-sm font-semibold">04 / Slide</p>
+<p class="text-[#5e7c8d] dark:text-[#a0b0bb] text-xs">Key Feature 1</p>
+</div>
+</div>
+<!-- Slide 5 -->
+<div class="flex flex-col gap-4 w-72">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg shadow-lg border border-[#e5e7eb] dark:border-[#2d3a43] transform hover:scale-[1.02] transition-transform duration-200" data-alt="High quality carousel slide 5 visual design" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHHXQ9AWY-rDOI_3mMsTKBrStFjOP0pkg9QH4gVfpev-77CFn-nBMu7ZyenswUIB_BLpPabGTbW-37RoTKvk8J4hGlRpLFgWhUpQobzPsdy2otivFSEhYQFgy2vtexLLkV_9P8iSGvuR-Wrdhpmpg37GPIDbTUGzY63gsPcTrWDOCTivDyMACmphKjBchT0d0kC1hap0A0jK-T92Y59kVDfd8_kuahcsxrz4nJiz2ZwmtMLHHXfBQXo3rn_1XoVIV67uqNOFXqhQ");'></div>
+<div class="px-1">
+<p class="text-[#101618] dark:text-white text-sm font-semibold">05 / Slide</p>
+<p class="text-[#5e7c8d] dark:text-[#a0b0bb] text-xs">Key Feature 2</p>
+</div>
+</div>
+<!-- Slide 6 -->
+<div class="flex flex-col gap-4 w-72">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg shadow-lg border border-[#e5e7eb] dark:border-[#2d3a43] transform hover:scale-[1.02] transition-transform duration-200" data-alt="High quality carousel slide 6 visual design" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEIJHqF_8ZaIevw_CFvDoc33vi3_XcetH7OT4XrSmIXVuiPSwZzqANmqHFNZjb1dDTbSCAmtQ04jc3HF5-6i0fixbYDNn54iMHerJ7xeILYRV7dCppfDssXj0K5SVxo7HKKW0ex4n97INjN2wzcvsnymrALPBJFueLUU9WdapLllPhzIFqgkyBGCxKYupkHsxxDDg5-3uemXiGpCyw597meuivFxQjiVLVoZbY2LFiKg3ZD7HKhFw5Y9aB5B1jdHpFkj_JP_fxnQ");'></div>
+<div class="px-1">
+<p class="text-[#101618] dark:text-white text-sm font-semibold">06 / Slide</p>
+<p class="text-[#5e7c8d] dark:text-[#a0b0bb] text-xs">Final Result</p>
+</div>
+</div>
+<!-- Slide 7 -->
+<div class="flex flex-col gap-4 w-72">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg shadow-lg border border-[#e5e7eb] dark:border-[#2d3a43] transform hover:scale-[1.02] transition-transform duration-200" data-alt="High quality carousel slide 7 visual design" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDI88McAXIXzgW_g-qwZ2IBP-DGnpUtjIgoCdGQxq86nEQ8s8xTvOow_3e82MjcIcxwYa0neLSKh-KnS5qkboR6Ot1WtKOdiz7NshGnwSUSP_PhPwaM-sTVuHhPxNuBelgzlKqol9EEDrdiqURAWIxMrS21-jHDleypeTvVNaVigpZLK2wvYs6798iKvUllXIZqlZxpZTAJ5RBYogc13D3-R9Cty__bOSN_QEzPO72_zMFpCj9Q1sLezYMShbBR0i6gNqQwcqqOZg");'></div>
+<div class="px-1">
+<p class="text-[#101618] dark:text-white text-sm font-semibold">07 / Slide</p>
+<p class="text-[#5e7c8d] dark:text-[#a0b0bb] text-xs">Call to Action</p>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 bg-gray-50 dark:bg-[#15232b] text-center border-t border-[#e5e7eb] dark:border-[#2d3a43]">
+<p class="text-xs text-[#5e7c8d] dark:text-[#a0b0bb]">Pro-tip: All slides are generated in 1080x1080px resolution for optimal clarity on mobile devices.</p>
+</div>
+</div>
+<!-- Fixed Sidebar Actions -->
+<aside class="w-[380px] flex flex-col gap-6 sticky top-[105px]">
+<!-- Main Export Card -->
+<div class="bg-white dark:bg-[#1a2b34] rounded-xl border border-[#e5e7eb] dark:border-[#2d3a43] shadow-sm p-6 flex flex-col gap-4">
+<div class="flex flex-col gap-1">
+<h4 class="text-[#101618] dark:text-white font-bold text-base">Exportar Carrusel</h4>
+<p class="text-[#5e7c8d] dark:text-[#a0b0bb] text-sm">Descarga todas las láminas en un archivo ZIP de alta calidad (PNG).</p>
+</div>
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-[#005280] text-white font-bold h-12 rounded-lg transition-all shadow-md">
+<span class="material-symbols-outlined">download</span>
+<span>Download ZIP</span>
+</button>
+</div>
+<!-- AI Captions Card -->
+<div class="bg-white dark:bg-[#1a2b34] rounded-xl border border-[#e5e7eb] dark:border-[#2d3a43] shadow-sm p-6 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h4 class="text-[#101618] dark:text-white font-bold text-base">Post Caption</h4>
+<span class="bg-primary/10 text-primary text-[10px] uppercase font-bold px-2 py-0.5 rounded">AI Optimized</span>
+</div>
+<div class="bg-background-light dark:bg-[#0f1c23] border border-[#e5e7eb] dark:border-[#2d3a43] rounded-lg p-3">
+<p class="text-sm text-[#5e7c8d] dark:text-[#a0b0bb] italic leading-relaxed">
+                            "Descubre cómo la IA está revolucionando el diseño de carruseles en segundos. 🚀 Aquí te mostramos los 3 pasos clave para dominar tu presencia en LinkedIn y Instagram sin gastar horas en diseño. #DiseñoIA #MarketingDigital #SaaS"
+                        </p>
+</div>
+<button class="w-full flex items-center justify-center gap-2 border border-[#e5e7eb] dark:border-[#2d3a43] text-[#101618] dark:text-white font-medium h-10 rounded-lg hover:bg-gray-50 dark:hover:bg-[#253945] transition-all">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+<span>Copy Captions</span>
+</button>
+</div>
+<!-- Secondary Actions -->
+<div class="flex flex-col gap-3">
+<button class="w-full py-3 flex items-center justify-center gap-2 text-[#5e7c8d] dark:text-[#a0b0bb] hover:text-primary transition-colors text-sm font-medium">
+<span class="material-symbols-outlined text-sm">edit</span>
+                        Edit Carousel Slides
+                    </button>
+<button class="w-full py-3 flex items-center justify-center gap-2 text-[#5e7c8d] dark:text-[#a0b0bb] hover:text-primary transition-colors text-sm font-medium">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+                        Create Another Carousel
+                    </button>
+</div>
+</aside>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="mt-auto px-10 py-6 border-t border-[#e5e7eb] dark:border-[#2d3a43] text-center">
+<p class="text-xs text-[#5e7c8d] dark:text-[#a0b0bb]">Simply Carousel © 2024. All rights reserved. High-resolution export enabled.</p>
+</footer>
+</body></html>

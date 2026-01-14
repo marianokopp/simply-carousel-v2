@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Simply Carousel - Crea carruseles virales con IA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#006199",
+                        "accent-green": "#10B981",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1c23",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#101518] dark:text-white transition-colors duration-300">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-[#f0f3f5] dark:border-gray-800">
+<div class="max-w-[1280px] mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<svg class="w-8 h-8" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-xl font-black tracking-tight text-primary">Simply Carousel</h1>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#features">Características</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#how-it-works">Cómo funciona</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Precios</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-sm font-bold px-4 py-2 hover:text-primary transition-colors hidden sm:block">Login</button>
+<button class="bg-primary text-white text-sm font-bold px-5 py-2.5 rounded-lg hover:opacity-90 transition-all shadow-md shadow-primary/20">
+                    Get Started
+                </button>
+</div>
+</div>
+</header>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="max-w-[1280px] mx-auto px-6 lg:px-10 py-16 lg:py-24">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                        Nuevo: Editor IA v2.0
+                    </div>
+<h1 class="text-5xl lg:text-7xl font-black leading-[1.1] tracking-[-0.04em] text-[#101518] dark:text-white">
+                        Crea carruseles virales con <span class="text-primary">IA en segundos</span>
+</h1>
+<p class="text-lg lg:text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-[540px]">
+                        Transforma tus ideas en carruseles de alta calidad para LinkedIn e Instagram sin necesidad de saber diseñar.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary text-white text-lg font-bold px-8 py-4 rounded-xl hover:scale-[1.02] transition-transform shadow-xl shadow-primary/30">
+                            Empieza gratis
+                        </button>
+<button class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-lg font-bold px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">play_circle</span>
+                            Ver demo
+                        </button>
+</div>
+<div class="flex items-center gap-4 text-sm text-gray-500 font-medium">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full bg-gray-200 border-2 border-white dark:border-background-dark flex items-center justify-center overflow-hidden">
+<img alt="User" data-alt="User profile avatar 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM5IZAR57jv4yuaIIgEA9MIHjzojaMuTiudO6hsvWGjCzwi_OQFcc_O2gjaE72IexNMOChSL0ykkqS1eAKFYsTEszL7S-OswVo4rAyaw0ryUuqj8-YBcJGNJ13G0bmmmWdkwUxlwY91uwFwTSWn14TDFdpvnAsGNXxDjXvWPkzpA0ZBspYqLHEZsfeHqbmqBlEqhY2191N3Vxz-vWLshMFKCHhSIrwRxkPf1esbjkZUJmTZ9Z9vTxrfSryQEpKyxuVx_mAMMMW7g"/>
+</div>
+<div class="w-8 h-8 rounded-full bg-gray-200 border-2 border-white dark:border-background-dark flex items-center justify-center overflow-hidden">
+<img alt="User" data-alt="User profile avatar 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCiFMiOoXSEB3lfcHnS4AezPqikJmvu35J7E0D8kAvm8_kSErwDdUOg1qs6j55ab8JXJ8MsPsduF0Z8yOrCTBZPGPimJCd9YN7VzuQtVEboqtAk4lnAk0HiryCDtMA0ADfOv1urH_drKbIJ88KKSM4vemvQaKfSQYwrDSBKjmRljAXd4eMNks49Y-ZuVvBu0g1UZkBZb7J_jTPzIP1AiTNw59T3QGZcY0XUGmlqMZryHOWnd6oTlZy-j3VyTknZJVvXnmmyU_OBQ"/>
+</div>
+<div class="w-8 h-8 rounded-full bg-gray-200 border-2 border-white dark:border-background-dark flex items-center justify-center overflow-hidden">
+<img alt="User" data-alt="User profile avatar 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWzkwrRwjFQiSxLFiuyFVizZ_V4vQ_LF9ubay65JIWSymjww-9C1Z7gR9ogzvH_INbgBdTjbBX9muEcC-mEKuCVz-lK6NaJbabiZDO-IdzNsQvr5gtKhP5WJPqOmI4SWV3xl5j1v9iD8L_5CZ_kFjrFuGtM3fiUGj0RhX6DID258k0R2WiLlfCq3-xR5dVCneU_xB8oYb6xLEX1DLGl5DeabPTb2RVJSnBCAm-qlkh6YPnGL7i-OPqfV5qWpIb7FH12Rx_K72aLg"/>
+</div>
+</div>
+<span>+2,000 creadores ya lo usan</span>
+</div>
+</div>
+<!-- Browser Mockup -->
+<div class="relative">
+<div class="absolute -inset-4 bg-primary/5 blur-3xl rounded-full"></div>
+<div class="relative bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-2xl overflow-hidden aspect-[4/3] lg:aspect-auto">
+<!-- Browser Header -->
+<div class="h-10 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center px-4 gap-2">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-red-400"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+<div class="w-3 h-3 rounded-full bg-green-400"></div>
+</div>
+<div class="mx-auto bg-white dark:bg-gray-700 px-4 py-1 rounded text-[10px] text-gray-400 w-1/2 text-center">simplycarousel.app/editor</div>
+</div>
+<!-- UI Simulation -->
+<div class="flex h-full min-h-[400px]">
+<!-- Left Sidebar (Steps) -->
+<div class="w-20 lg:w-24 border-r border-gray-100 dark:border-gray-800 flex flex-col items-center py-6 gap-8 bg-gray-50/50 dark:bg-gray-900/50">
+<div class="p-2 rounded-lg bg-primary/10 text-primary"><span class="material-symbols-outlined">edit_note</span></div>
+<div class="p-2 rounded-lg text-gray-300"><span class="material-symbols-outlined">palette</span></div>
+<div class="p-2 rounded-lg text-gray-300"><span class="material-symbols-outlined">cloud_download</span></div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 p-6 space-y-4">
+<div class="h-4 w-32 bg-gray-100 dark:bg-gray-800 rounded"></div>
+<div class="h-32 w-full border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl flex items-center justify-center text-gray-300">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl mb-2">auto_awesome</span>
+<p class="text-xs">Escribe tu idea aquí...</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<div class="aspect-square bg-primary/5 rounded-lg border border-primary/20 flex flex-col p-2">
+<div class="h-2 w-full bg-primary/20 rounded mb-1"></div>
+<div class="h-2 w-2/3 bg-primary/10 rounded"></div>
+</div>
+<div class="aspect-square bg-gray-50 dark:bg-gray-800 rounded-lg flex flex-col p-2">
+<div class="h-2 w-full bg-gray-200 dark:bg-gray-700 rounded mb-1"></div>
+<div class="h-2 w-2/3 bg-gray-100 dark:bg-gray-600 rounded"></div>
+</div>
+<div class="aspect-square bg-gray-50 dark:bg-gray-800 rounded-lg flex flex-col p-2">
+<div class="h-2 w-full bg-gray-200 dark:bg-gray-700 rounded mb-1"></div>
+<div class="h-2 w-2/3 bg-gray-100 dark:bg-gray-600 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features/How it works Section -->
+<section class="bg-white dark:bg-background-dark py-24 border-y border-gray-100 dark:border-gray-800" id="how-it-works">
+<div class="max-w-[1280px] mx-auto px-6 lg:px-10">
+<div class="text-center mb-20 space-y-4">
+<h2 class="text-primary font-bold tracking-widest uppercase text-sm">El proceso</h2>
+<h3 class="text-3xl lg:text-5xl font-black tracking-tight text-[#101518] dark:text-white">Tres simples pasos al éxito</h3>
+<p class="text-gray-600 dark:text-gray-400 max-w-[600px] mx-auto">Nuestra IA se encarga del diseño técnico para que tú te encargues de la estrategia de contenido.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Step 1 -->
+<div class="group p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-accent-green/30 hover:shadow-xl hover:shadow-accent-green/5 transition-all duration-300">
+<div class="w-14 h-14 rounded-xl bg-accent-green/10 text-accent-green flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">lightbulb</span>
+</div>
+<h4 class="text-xl font-bold mb-3">1. Prompt</h4>
+<p class="text-gray-500 dark:text-gray-400 leading-relaxed">
+                            Describe tu idea principal y deja que nuestra IA especializada redacte el guion, los ganchos y el contenido de cada slide.
+                        </p>
+</div>
+<!-- Step 2 -->
+<div class="group p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-accent-green/30 hover:shadow-xl hover:shadow-accent-green/5 transition-all duration-300">
+<div class="w-14 h-14 rounded-xl bg-accent-green/10 text-accent-green flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">magic_button</span>
+</div>
+<h4 class="text-xl font-bold mb-3">2. Edit</h4>
+<p class="text-gray-500 dark:text-gray-400 leading-relaxed">
+                            Personaliza colores, fuentes y estilos en nuestro editor intuitivo de 3 columnas. Cambia el look en un solo clic.
+                        </p>
+</div>
+<!-- Step 3 -->
+<div class="group p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-accent-green/30 hover:shadow-xl hover:shadow-accent-green/5 transition-all duration-300">
+<div class="w-14 h-14 rounded-xl bg-accent-green/10 text-accent-green flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">download</span>
+</div>
+<h4 class="text-xl font-bold mb-3">3. Export</h4>
+<p class="text-gray-500 dark:text-gray-400 leading-relaxed">
+                            Descarga tu carrusel optimizado para LinkedIn (PDF) o Instagram (PNG/JPG). ¡Listo para publicar y viralizar!
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-[1280px] mx-auto px-6 lg:px-10 py-24">
+<div class="bg-primary rounded-[2rem] p-12 lg:p-24 relative overflow-hidden shadow-2xl shadow-primary/20">
+<!-- Abstract background patterns -->
+<div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>
+<div class="relative z-10 text-center space-y-8">
+<h2 class="text-white text-4xl lg:text-6xl font-black tracking-tight max-w-[800px] mx-auto">
+                        ¿Listo para viralizar tu contenido?
+                    </h2>
+<p class="text-white/80 text-lg lg:text-xl max-w-[600px] mx-auto font-medium">
+                        Únete a miles de creadores de contenido que ya están ahorrando horas de diseño cada semana.
+                    </p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<button class="bg-white text-primary text-lg font-bold px-10 py-4 rounded-xl hover:bg-gray-100 transition-all shadow-lg">
+                            Empieza ahora gratis
+                        </button>
+<button class="bg-primary border border-white/30 text-white text-lg font-bold px-10 py-4 rounded-xl hover:bg-white/10 transition-all">
+                            Ver planes premium
+                        </button>
+</div>
+<p class="text-white/60 text-sm">No se requiere tarjeta de crédito</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-gray-50 dark:bg-gray-900/50 border-t border-gray-200 dark:border-gray-800 py-16">
+<div class="max-w-[1280px] mx-auto px-6 lg:px-10">
+<div class="grid md:grid-cols-4 gap-12">
+<div class="col-span-2 space-y-6">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<svg class="w-6 h-6" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-xl font-black tracking-tight text-primary">Simply Carousel</span>
+</div>
+<p class="text-gray-500 dark:text-gray-400 max-w-sm">
+                        La herramienta definitiva para creadores de contenido que quieren profesionalizar su marca personal sin complicaciones técnicas.
+                    </p>
+</div>
+<div>
+<h5 class="font-bold mb-6">Producto</h5>
+<ul class="space-y-4 text-gray-500 dark:text-gray-400 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Características</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Plantillas</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">IA Editor</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Precios</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6">Legal</h5>
+<ul class="space-y-4 text-gray-500 dark:text-gray-400 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Privacidad</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Términos</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Cookies</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:row justify-between items-center gap-4 text-gray-400 text-sm">
+<p>© 2024 Simply Carousel. Todos los derechos reservados.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Twitter</a>
+<a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
+<a class="hover:text-primary transition-colors" href="#">Instagram</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

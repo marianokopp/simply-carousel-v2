@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Simply Carousel - AI Generator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#607AFB", "background-light": "#f5f6f8", "background-dark": "#0f1323"}, fontFamily: {display: "Inter"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>body {
+    font-family: "Inter", sans-serif
+    }
+.custom-select-icon {
+    appearance: none;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDNAHQ2FHU0NFvDE_sScy8ZvayI8A05VHJJfyggpD5QVWyEOoIy1Vo0HklqEu9VW-G2QiJF3OGTP9dh1HuhvjQpZ3hmFUPbphV7AI7gg9oudZyVAnTb3H6VMDq-o7NJmO3np9-1s0PRwpuDBfPcbC3rFEi_F72Pozp_JA3ftkHnctr1uKmi1M4myTfGZFqGAQUXegIXwPvvIR4mSxceouVTisE4iTH1gTtw4oQxH5YCQ_VTlpbdxAkYnFEE15vnpD1WcBxf6F7GjA);
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.5rem
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen font-display transition-colors duration-300">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-[#e2dae7] dark:border-white/10 px-6 md:px-10 py-4">
+<div class="max-w-[1200px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-2xl">auto_awesome</span>
+</div>
+<h1 class="text-[#161018] dark:text-white text-xl font-bold tracking-tight">Simply Carousel</h1>
+</div>
+<nav class="flex items-center gap-8">
+<div class="hidden md:flex items-center gap-6">
+<a class="text-[#161018] dark:text-gray-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Mis Carruseles</a>
+<a class="text-[#161018] dark:text-gray-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Plantillas</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/10 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="size-10 rounded-full bg-primary/10 border-2 border-primary overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="User profile avatar with friendly appearance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp87N1e0rN-RASZIUIZa-GnIJcv289RmR0MHSQRB9MZS6I6R6ObJ3c3PmuGBszBad6KFeN1LCQJxNSKa8wAbXIZ4-SP2SY9_1yUJvdIEWOjKmfEsWlg2f1nKMDDXbVB4oS-v8hjf4_aCSQ-_Ek1GmAVXwpSgVU4mbQkZXKTcT1aJiqYcOyCRhjJaBLSWtL6fSzcj__vuXd6DrOkC3j99gxSi-YVKJUvrDYYmZPIJrjt6hJWrl7yiR5dDK489pGlqmsg7pUYGaaVQ"/>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="max-w-[1200px] mx-auto px-6 py-12 flex flex-col items-center">
+<!-- Headline Section -->
+<div class="text-center max-w-2xl mb-12">
+<h2 class="text-[#161018] dark:text-white text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+                Diseña tu próximo carrusel <span class="text-primary">en segundos</span>
+</h2>
+<p class="text-[#7c5e8d] dark:text-gray-400 text-lg">
+                Cuéntale a nuestra IA sobre qué quieres hablar y crearemos el contenido y el diseño por ti.
+            </p>
+</div>
+<!-- Generation Card -->
+<div class="w-full max-w-[800px] bg-white dark:bg-white/5 border border-[#e2dae7] dark:border-white/10 rounded-xl shadow-xl shadow-primary/5 p-8">
+<div class="flex flex-col gap-8">
+<!-- Topic Input -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<label class="text-[#161018] dark:text-white text-base font-semibold">Tu idea o tema</label>
+<span class="text-[#7c5e8d] text-xs font-medium uppercase tracking-wider">Paso 1</span>
+</div>
+<textarea class="w-full min-h-[160px] p-5 text-lg rounded-xl border border-[#e2dae7] dark:border-white/20 bg-white dark:bg-background-dark text-[#161018] dark:text-white placeholder:text-[#7c5e8d]/50 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Ej: Un carrusel sobre los beneficios del ejercicio matutino para emprendedores ocupados..."></textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Slides Selector -->
+<div class="flex flex-col gap-2">
+<label class="text-[#161018] dark:text-white text-base font-semibold">Número de láminas</label>
+<div class="relative">
+<select class="custom-select-icon w-full h-14 pl-5 pr-12 text-base rounded-xl border border-[#e2dae7] dark:border-white/20 bg-white dark:bg-background-dark text-[#161018] dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary appearance-none cursor-pointer transition-all">
+<option value="5">5 Láminas (Rápido)</option>
+<option selected="" value="7">7 Láminas (Recomendado)</option>
+<option value="10">10 Láminas (Detallado)</option>
+</select>
+</div>
+</div>
+<!-- CTA Button -->
+<div class="flex flex-col justify-end">
+<button class="group relative flex items-center justify-center gap-2 w-full h-14 bg-primary hover:bg-primary/90 text-white text-lg font-bold rounded-xl transition-all shadow-lg shadow-primary/20 active:scale-[0.98]">
+<span class="material-symbols-outlined text-xl group-hover:rotate-12 transition-transform">bolt</span>
+                            Generar con IA
+                        </button>
+</div>
+</div>
+<!-- Subtle Tips -->
+<div class="pt-4 border-t border-[#e2dae7] dark:border-white/5 flex flex-wrap gap-4 items-center">
+<p class="text-[#7c5e8d] text-sm">Prueba con:</p>
+<button class="px-3 py-1 bg-background-light dark:bg-white/5 text-primary dark:text-primary rounded-full text-xs font-medium hover:bg-primary/10 transition-colors">🚀 Estrategias de marketing</button>
+<button class="px-3 py-1 bg-background-light dark:bg-white/5 text-primary dark:text-primary rounded-full text-xs font-medium hover:bg-primary/10 transition-colors">🧘 Rutinas de bienestar</button>
+<button class="px-3 py-1 bg-background-light dark:bg-white/5 text-primary dark:text-primary rounded-full text-xs font-medium hover:bg-primary/10 transition-colors">💡 Tips de productividad</button>
+</div>
+</div>
+</div>
+<!-- Benefits Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 w-full max-w-[1000px]">
+<div class="flex flex-col items-center text-center gap-3">
+<div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">magic_button</span>
+</div>
+<h3 class="font-bold text-[#161018] dark:text-white">Escritura Mágica</h3>
+<p class="text-sm text-[#7c5e8d] dark:text-gray-400 leading-relaxed">Nuestra IA redacta hooks y copies optimizados para engagement.</p>
+</div>
+<div class="flex flex-col items-center text-center gap-3">
+<div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">palette</span>
+</div>
+<h3 class="font-bold text-[#161018] dark:text-white">Diseño Coherente</h3>
+<p class="text-sm text-[#7c5e8d] dark:text-gray-400 leading-relaxed">Colores y tipografías que se adaptan a tu marca automáticamente.</p>
+</div>
+<div class="flex flex-col items-center text-center gap-3">
+<div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">share</span>
+</div>
+<h3 class="font-bold text-[#161018] dark:text-white">Listo para Redes</h3>
+<p class="text-sm text-[#7c5e8d] dark:text-gray-400 leading-relaxed">Exporta en PDF o PNG optimizado para Instagram y LinkedIn.</p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto py-10 px-6 border-t border-[#e2dae7] dark:border-white/10 text-center">
+<p class="text-[#7c5e8d] text-sm">© 2024 Simply Carousel. Potenciado por Inteligencia Artificial.</p>
+</footer>
+</body></html>

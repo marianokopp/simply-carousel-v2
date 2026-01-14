@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Simply Carousel - Iniciar Sesión</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#607AFB", "background-light": "#f5f6f8", "background-dark": "#0f1323"}, fontFamily: {display: "Inter"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col items-center justify-center p-4">
+<!-- Login Container -->
+<div class="w-full max-w-[480px] flex flex-col gap-6">
+<!-- Brand Logo Header -->
+<header class="flex flex-col items-center gap-2 mb-2">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-10 bg-primary/10 rounded-lg flex items-center justify-center">
+<svg class="size-6 text-primary" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-[#101618] dark:text-white text-2xl font-bold leading-tight tracking-tight">Simply Carousel</h2>
+</div>
+<p class="text-[#5e7c8d] dark:text-gray-400 text-sm font-medium">Crea carruseles increíbles con IA</p>
+</header>
+<!-- Main Card -->
+<main class="bg-white dark:bg-[#1a2b34] rounded-xl shadow-sm border border-[#dae2e7] dark:border-[#2d3d46] p-8 flex flex-col gap-6">
+<h1 class="text-[#101618] dark:text-white text-2xl font-bold text-center">Iniciar Sesión</h1>
+<!-- Form Fields -->
+<form class="flex flex-col gap-4">
+<!-- Email Field -->
+<div class="flex flex-col gap-2">
+<label class="text-[#101618] dark:text-gray-200 text-sm font-semibold leading-normal">
+                        Correo electrónico
+                    </label>
+<input class="form-input flex w-full rounded-lg text-[#101618] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dae2e7] dark:border-[#2d3d46] bg-white dark:bg-[#1a2b34] h-12 placeholder:text-[#5e7c8d] px-4 text-base font-normal" placeholder="email@ejemplo.com" type="email" value=""/>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<label class="text-[#101618] dark:text-gray-200 text-sm font-semibold leading-normal">
+                            Contraseña
+                        </label>
+<a class="text-primary text-xs font-semibold hover:underline" href="#">¿Olvidaste tu contraseña?</a>
+</div>
+<div class="relative flex items-center">
+<input class="form-input flex w-full rounded-lg text-[#101618] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dae2e7] dark:border-[#2d3d46] bg-white dark:bg-[#1a2b34] h-12 placeholder:text-[#5e7c8d] px-4 pr-12 text-base font-normal" placeholder="••••••••" type="password" value=""/>
+<button class="absolute right-3 text-[#5e7c8d] hover:text-primary flex items-center justify-center p-1" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Primary Login Button -->
+<button class="mt-2 w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2" type="submit">
+<span>Iniciar Sesión</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="relative flex items-center py-2">
+<div class="flex-grow border-t border-[#dae2e7] dark:border-[#2d3d46]"></div>
+<span class="flex-shrink mx-4 text-[#5e7c8d] text-sm">o</span>
+<div class="flex-grow border-t border-[#dae2e7] dark:border-[#2d3d46]"></div>
+</div>
+<!-- Social Login -->
+<button class="w-full flex items-center justify-center gap-3 px-4 py-3 border border-[#dae2e7] dark:border-[#2d3d46] rounded-lg bg-white dark:bg-transparent hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<img alt="Google Logo" class="w-5 h-5" data-alt="Official Google G logo in colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP0NkiCYLRR8I5m7uabwarS15cvVmsO1ktcQ5uX41xhap6Qz966VQxAzr4spxst2nfJXc3lanRBWgcRuboP1quFY4JypmBl9MTAC666eR-NzbKPIzK-YJZx3DFcwCECeHioMRAveYeHlPQLiyaR3fa5a1yqm1UIbQ3DmZl04V5iNGS3u3vwPIFv5HPZBySRSKQMw_KF1SFZGmqPoA2VokBUJ9PZu-2rBswZGIhOohfENfBIRWRW15avn1sOEo9uh1NPJCdAQ6TdA"/>
+<span class="text-[#101618] dark:text-white font-semibold text-sm">Continuar con Google</span>
+</button>
+</main>
+<!-- Footer Navigation -->
+<footer class="text-center">
+<p class="text-[#5e7c8d] dark:text-gray-400 text-sm">
+                ¿No tienes cuenta? 
+                <a class="text-primary font-bold hover:underline ml-1" href="#">Regístrate gratis</a>
+</p>
+</footer>
+<!-- Decorative Illustration Element (Optional for SaaS look) -->
+<div class="mt-4 @container hidden md:block">
+<div class="w-full bg-primary/5 dark:bg-primary/10 rounded-xl p-4 flex items-center gap-4 border border-primary/10">
+<div class="size-12 rounded-lg bg-white dark:bg-[#1a2b34] flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+</div>
+<div class="flex flex-col">
+<p class="text-xs font-bold text-[#101618] dark:text-white uppercase tracking-wider">Nuevo</p>
+<p class="text-sm text-[#5e7c8d] dark:text-gray-300">Genera carruseles desde un simple prompt de texto.</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

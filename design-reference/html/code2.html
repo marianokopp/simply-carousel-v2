@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Simply Carousel Mobile Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#006199",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1c23",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab {
+            border-bottom: 3px solid #006199;
+            color: #006199;
+        }
+        .active-tab .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex justify-center">
+<!-- Mobile Wrapper (Max width 480px for desktop preview simulation) -->
+<div class="relative flex h-full min-h-screen w-full max-w-[480px] flex-col bg-white dark:bg-background-dark shadow-xl overflow-x-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-solid border-[#f0f3f5] dark:border-gray-800 px-4 py-3">
+<div class="flex items-center gap-2 text-[#101518] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-base font-bold leading-tight tracking-tight">Simply Carousel</h2>
+</div>
+<button class="flex h-9 min-w-[80px] cursor-pointer items-center justify-center rounded-lg bg-primary px-4 text-white text-xs font-bold transition-opacity hover:opacity-90">
+<span>Finalizar</span>
+</button>
+</header>
+<!-- Main Editor Content Area -->
+<main class="flex-1 overflow-y-auto pb-32">
+<!-- Slide Preview Area -->
+<div class="p-4 flex flex-col items-center">
+<div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 bg-white">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Abstract vibrant gradient pattern for slide background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-NEXAU3x_sbqy9oLKEJi3L0VJNh9zm1DDAQDqffzF0WXl2DZ6eqiUjenGt9W6LRN5C62mVKSLIEj9pC_vz1pY4MnwwbeorB62cAKEUSalIXxNsMMaFr5g0d3Dk3KWEZiWBvV4z3U94ae6sLNd45GMuBLfH9le3xJG0mIx1TJy4ZPX2nUaiKu-xs1iFLP7hDkjiSGLsIF6ga9CTfbYeQXM_jW0lyi10IzJ1-cx-Vn5_Xx1-as0EgAnew6DMYqnEkKXuJE6d0IX-A');"></div>
+<!-- Slide Content Overlay -->
+<div class="absolute inset-0 bg-black/20 p-8 flex flex-col justify-center items-start text-white">
+<span class="bg-primary px-2 py-1 rounded text-[10px] font-bold uppercase mb-4">Consejo Pro</span>
+<h3 class="text-2xl font-bold leading-tight mb-4">Cómo escalar tu marca personal en 2024</h3>
+<p class="text-sm opacity-90 leading-relaxed">El contenido visual es el rey. Descubre las 3 claves para destacar en el feed de tus seguidores.</p>
+</div>
+</div>
+</div>
+<!-- Carousel Controls -->
+<div class="px-4 py-2 flex flex-col items-center gap-4">
+<div class="flex items-center justify-between w-full max-w-[200px]">
+<button class="size-10 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="text-center">
+<p class="text-primary text-sm font-bold">1 / 7</p>
+<p class="text-[10px] text-gray-400 font-medium">DESLIZA O USA FLECHAS</p>
+</div>
+<button class="size-10 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Content Editor Panel (Active View) -->
+<div class="mt-4 px-4 space-y-4">
+<div class="flex flex-col gap-1">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300 px-1">Título del Slide</label>
+<textarea class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-800 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none min-h-[80px]" placeholder="Escribe el título principal...">Cómo escalar tu marca personal en 2024</textarea>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300 px-1">Cuerpo del texto</label>
+<textarea class="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-800 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none min-h-[120px]" placeholder="Describe el contenido de este slide...">El contenido visual es el rey. Descubre las 3 claves para destacar en el feed de tus seguidores.</textarea>
+</div>
+<div class="flex items-center gap-3 p-3 bg-primary/5 rounded-xl border border-primary/10">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div>
+<p class="text-xs font-bold text-primary">Mejorar con IA</p>
+<p class="text-[10px] text-primary/80">Reescribir este texto para que sea más impactante</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Tabs (Persistent) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex justify-center pointer-events-none">
+<div class="w-full max-w-[480px] bg-white dark:bg-background-dark border-t border-gray-100 dark:border-gray-800 px-4 py-2 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] pointer-events-auto">
+<div class="flex items-center justify-around">
+<!-- Contenido Tab -->
+<a class="flex flex-col items-center gap-1 py-1 active-tab flex-1" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<p class="text-[10px] font-bold">Contenido</p>
+</a>
+<!-- Diseño Tab -->
+<a class="flex flex-col items-center gap-1 py-1 text-gray-400 flex-1" href="#">
+<span class="material-symbols-outlined">palette</span>
+<p class="text-[10px] font-bold">Diseño</p>
+</a>
+<!-- Slides Tab -->
+<a class="flex flex-col items-center gap-1 py-1 text-gray-400 flex-1" href="#">
+<span class="material-symbols-outlined">layers</span>
+<p class="text-[10px] font-bold">Slides</p>
+</a>
+</div>
+<!-- iOS Home Indicator Spacing -->
+<div class="h-4"></div>
+</div>
+</nav>
+</div>
+</body></html>

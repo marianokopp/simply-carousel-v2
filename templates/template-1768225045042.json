@@ -1,0 +1,219 @@
+{
+    "id": "example-minimal",
+    "metadata": {
+        "name": "Young Minimal",
+        "category": "minimal",
+        "colorSupport": 2,
+        "description": "Minimal - title",
+        "tags": [
+            "minimal"
+        ]
+    },
+    "viewport": {
+        "width": 1080,
+        "height": 1350,
+        "safeMargin": 60
+    },
+    "background": {
+        "type": "solid",
+        "color": "#dedede"
+    },
+    "design_elements": [],
+    "text_slots": {
+        "title": {
+            "enabled": true,
+            "x": 108,
+            "y": 300,
+            "width": 864,
+            "height": 400,
+            "fontFamily": "Young Serif",
+            "fontSize": 110,
+            "fontWeight": 700,
+            "color": "#dedede",
+            "textAlign": "left",
+            "verticalAlign": "middle",
+            "lineHeight": 1.05,
+            "letterSpacing": -2,
+            "textTransform": "none",
+            "autoFit": true,
+            "minFontSize": 48,
+            "maxLines": 4,
+            "zIndex": 9
+        },
+        "body": {
+            "enabled": true,
+            "x": 108,
+            "y": 750,
+            "width": 864,
+            "height": 400,
+            "fontFamily": "Young Serif",
+            "fontSize": 60,
+            "fontWeight": 400,
+            "color": "#dedede",
+            "textAlign": "left",
+            "verticalAlign": "middle",
+            "lineHeight": 1.4,
+            "letterSpacing": 0,
+            "textTransform": "none",
+            "autoFit": true,
+            "minFontSize": 24,
+            "maxLines": 8,
+            "zIndex": 8
+        },
+        "slide_number": {
+            "enabled": true,
+            "x": 108,
+            "y": 106,
+            "width": 120,
+            "height": 110,
+            "fontFamily": "Young Serif",
+            "fontSize": 80,
+            "fontWeight": 600,
+            "color": "#dedede",
+            "textAlign": "left",
+            "verticalAlign": "top",
+            "lineHeight": 1.2,
+            "letterSpacing": 0,
+            "textTransform": "none",
+            "autoFit": false,
+            "zIndex": 10
+        }
+    },
+    "global_slots": {
+        "logo": {
+            "enabled": true,
+            "x": 866,
+            "y": 118,
+            "width": 100,
+            "height": 100,
+            "zIndex": 50
+        },
+        "author": {
+            "enabled": true,
+            "x": 116,
+            "y": 1288,
+            "width": 400,
+            "height": 60,
+            "fontFamily": "Young Serif",
+            "fontSize": 22,
+            "fontWeight": 500,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "zIndex": 50,
+            "colorVar": "brand_primary"
+        },
+        "website": {
+            "enabled": false,
+            "x": 160,
+            "y": 1260,
+            "width": 400,
+            "height": 50,
+            "fontFamily": "Inter",
+            "fontSize": 24,
+            "fontWeight": 400,
+            "color": "#FFFFFF",
+            "textAlign": "left",
+            "zIndex": 50
+        }
+    },
+    "variations": {
+        "hook": {
+            "background": {
+                "type": "solid",
+                "color": "#303030"
+            }
+
+      "text_slots": {
+                "title": {
+                    "enabled": true,
+                    "x": 108,
+                    "y": 356,
+                    "width": 864,
+                    "height": 600,
+                    "fontFamily": "Young Serif",
+                    "fontSize": 120,
+                    "fontWeight": 700,
+                    "color": "#303030",
+                    "textAlign": "left",
+                    "verticalAlign": "middle",
+                    "lineHeight": 1.05,
+                    "letterSpacing": -2,
+                    "textTransform": "none",
+                    "autoFit": true,
+                    "minFontSize": 48,
+                    "maxLines": 4,
+                    "zIndex": 9
+                },
+                "body": {
+                    "enabled": false,
+                    "x": 108,
+                    "y": 750,
+                    "width": 864,
+                    "height": 400,
+                    "fontFamily": "Inter",
+                    "fontSize": 40,
+                    "fontWeight": 400,
+                    "color": "#FFFFFF",
+                    "textAlign": "left",
+                    "verticalAlign": "top",
+                    "lineHeight": 1.4,
+                    "letterSpacing": 0,
+                    "textTransform": "none",
+                    "autoFit": true,
+                    "minFontSize": 24,
+                    "maxLines": 8,
+                    "zIndex": 8
+                }
+            }
+        },
+        "cta": {
+            "background": {
+                "type": "solid",
+                "color": "#303030"
+            }
+
+      "text_slots": {
+                "title": {
+                    "enabled": true,
+                    "x": 108,
+                    "y": 344,
+                    "width": 864,
+                    "height": 400,
+                    "fontFamily": "Young Serif",
+                    "fontSize": 100,
+                    "fontWeight": 700,
+                    "color": "#303030",
+                    "textAlign": "center",
+                    "verticalAlign": "middle",
+                    "lineHeight": 1.05,
+                    "letterSpacing": -2,
+                    "textTransform": "none",
+                    "autoFit": true,
+                    "minFontSize": 48,
+                    "maxLines": 4,
+                    "zIndex": 9
+                },
+                "body": {
+                    "enabled": true,
+                    "x": 108,
+                    "y": 814,
+                    "width": 864,
+                    "height": 300,
+                    "fontFamily": "Young Serif",
+                    "fontSize": 50,
+                    "fontWeight": 400,
+                    "color": "#303030",
+                    "textAlign": "center",
+                    "verticalAlign": "top",
+                    "lineHeight": 1.4,
+                    "letterSpacing": 0,
+                    "textTransform": "none",
+                    "autoFit": true,
+                    "minFontSize": 24,
+                    "maxLines": 8,
+                    "zIndex": 8
+                }
+            }
+        }
+    }
+}
