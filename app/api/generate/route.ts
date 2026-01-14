@@ -1,5 +1,7 @@
 import { generateCarousel } from '@/lib/anthropic';
 import { NextResponse } from 'next/server';
+import { createClient } from '@/lib/supabase/server';
+import { canCreateCarousel } from '@/lib/subscriptions';
 
 /**
  * API Route para generar carruseles con IA
@@ -53,6 +55,32 @@ export async function POST(request: Request) {
             return NextResponse.json(
                 { error: 'API key de Anthropic no configurada en el servidor' },
                 { status: 500 }
+            );
+        }
+
+        // Obtener usuario actual
+        const supabase = await createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+
+        if (!user) {
+            return NextResponse.json(
+                { error: 'Debes estar autenticado para generar carruseles' },
+                { status: 401 }
+            );
+        }
+
+        // Verificar límites de la suscripción
+        const limitCheck = await canCreateCarousel(user.id);
+
+        if (!limitCheck.allowed) {
+            return NextResponse.json(
+                { 
+                    error: limitCheck.reason,
+                    limit: limitCheck.limit,
+                    currentCount: limitCheck.currentCount,
+                    requiresUpgrade: limitCheck.requiresUpgrade
+                },
+                { status: 403 }
             );
         }
 
