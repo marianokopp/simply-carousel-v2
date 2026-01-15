@@ -1,8 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { createClient } from '@/lib/supabase/client';
-import { getUserCarouselCount, checkSubscription } from '@/lib/subscriptions';
 
 /**
  * Muestra el contador de carruseles disponibles del usuario
@@ -19,26 +17,22 @@ export default function CarouselCounter() {
 
     async function loadCounterData() {
         try {
-            const supabase = createClient();
-            const { data: { user } } = await supabase.auth.getUser();
+            const response = await fetch('/api/user/carousel-stats');
 
-            if (!user) {
-                setLoading(false);
-                return;
+            if (!response.ok) {
+                if (response.status === 401) {
+                    // Usuario no autenticado, mostrar valores por defecto
+                    setLoading(false);
+                    return;
+                }
+                throw new Error('Error fetching stats');
             }
 
-            // Obtener plan y límite
-            const subscription = await checkSubscription(user.id);
-            const userPlan = subscription?.plan || 'free';
-            const userLimit = userPlan === 'pro_monthly' ? 30 : 3;
+            const data = await response.json();
 
-            setPlan(userPlan === 'pro_monthly' ? 'pro' : 'free');
-            setLimit(userLimit);
-
-            // Obtener contador actual del mes
-            const now = new Date();
-            const currentCount = await getUserCarouselCount(user.id, now.getMonth() + 1, now.getFullYear());
-            setCount(currentCount);
+            setPlan(data.plan);
+            setLimit(data.limit);
+            setCount(data.count);
         } catch (error) {
             console.error('Error loading carousel counter:', error);
         } finally {
