@@ -67,8 +67,8 @@ export async function middleware(req: NextRequest) {
         return NextResponse.redirect(redirectUrl);
     }
 
-    // Si el usuario está autenticado y está en /login, redirigir al generator
-    if (session && req.nextUrl.pathname === '/login') {
+    // Si el usuario está autenticado y está en /login o /, redirigir al generator
+    if (session && (req.nextUrl.pathname === '/login' || req.nextUrl.pathname === '/')) {
         const redirectUrl = req.nextUrl.clone();
         redirectUrl.pathname = '/generator';
         return NextResponse.redirect(redirectUrl);

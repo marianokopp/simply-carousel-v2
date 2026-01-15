@@ -1,4 +1,5 @@
 import GeneratorForm from '@/components/features/generator/GeneratorForm';
+import CarouselCounter from '@/components/CarouselCounter';
 
 /**
  * Página del generador de carruseles con IA
@@ -11,11 +12,16 @@ export default function GeneratorPage() {
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
             {/* Header */}
             <div className="max-w-3xl mx-auto mb-12">
-                <div className="text-center">
-                    <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
+                <div className="text-center space-y-4">
+                    <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                         Simply Carousel
                     </h2>
                     <p className="text-gray-600">Paso 1: Genera el contenido</p>
+
+                    {/* Contador de carruseles */}
+                    <div className="max-w-sm mx-auto">
+                        <CarouselCounter />
+                    </div>
                 </div>
             </div>
 
