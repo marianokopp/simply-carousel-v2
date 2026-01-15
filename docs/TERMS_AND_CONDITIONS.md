@@ -44,12 +44,12 @@ Al crear una cuenta, suscribirte al plan Pro, o usar cualquier funcionalidad del
 
 ### 4.1 Suscripción Mensual
 - La suscripción Pro cuesta **$5.99 USD por mes**
-- Los pagos se procesan automáticamente cada mes vía PayPal
+- Los pagos se procesan automáticamente cada mes vía Systeme.io
 - No hay contratos a largo plazo - puedes cancelar en cualquier momento
 - Los cargos son **NO REEMBOLSABLES** (ver sección 4.3)
 
 ### 4.2 Cancelación
-- Puedes cancelar tu suscripción en cualquier momento desde tu panel de PayPal
+- Puedes cancelar tu suscripción en cualquier momento desde tu panel de Systeme.io
 - La cancelación es **efectiva al final del período de facturación actual**
 - Después de cancelar, seguirás teniendo acceso Pro hasta el fin del mes pagado
 - No habrá cargos adicionales después de la cancelación
@@ -72,8 +72,8 @@ Razones:
 - Si no aceptas el nuevo precio, puedes cancelar tu suscripción
 
 ### 4.5 Métodos de Pago
-- Solo aceptamos pagos a través de PayPal
-- Debes tener una cuenta PayPal válida y en buen estado
+- Aceptamos pagos a través de Systeme.io (tarjeta de crédito/débito, PayPal y otros métodos)
+- Los pagos son procesados de forma segura por Systeme.io
 - Si un pago falla, tu cuenta Pro será suspendida hasta que se resuelva
 
 ---
@@ -147,7 +147,7 @@ Razones:
 Recopilamos:
 - Email, nombre (para autenticación vía Supabase)
 - Carouseles generados y textos ingresados
-- Información de pagos (procesada por PayPal)
+- Información de pagos (procesada por Systeme.io)
 - Logs de uso y métricas de servicio
 
 ### 8.2 Uso de Datos
@@ -159,7 +159,7 @@ Usamos tus datos para:
 
 ### 8.3 Compartir Datos
 - **NO vendemos** tus datos personales a terceros
-- Compartimos datos solo con procesadores de pago (PayPal) y proveedores de infraestructura (Supabase, Vercel)
+- Compartimos datos solo con procesadores de pago (Systeme.io) y proveedores de infraestructura (Supabase, Vercel)
 - Podemos compartir datos si la ley lo requiere
 
 ### 8.4 Seguridad
@@ -196,7 +196,7 @@ Puedes:
 **No somos responsables por:**
 - Contenido generado por IA que pueda ser inexacto o inapropiado
 - Uso indebido del contenido generado
-- Problemas con PayPal o procesamiento de pagos
+- Problemas con Systeme.io o procesamiento de pagos
 - Pérdida de contenido debido a cancelación de cuenta o errores técnicos
 
 ---
@@ -226,7 +226,7 @@ Aceptas indemnizarnos y defendernos contra cualquier reclamo, daño, o pérdida 
 
 ### 12.1 Por tu parte
 - Puedes cancelar tu cuenta en cualquier momento
-- Puedes cancelar tu suscripción desde PayPal sin penalización
+- Puedes cancelar tu suscripción desde Systeme.io sin penalización
 
 ### 12.2 Por nuestra parte
 Podemos terminar tu acceso si:

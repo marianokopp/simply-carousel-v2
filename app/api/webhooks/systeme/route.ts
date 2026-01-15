@@ -11,9 +11,15 @@ const supabase = createClient(
 
 // Secret compartido con Systeme.io
 const WEBHOOK_SECRET = process.env.SYSTEME_WEBHOOK_SECRET!;
+const PRO_TAG = process.env.SYSTEME_PRO_TAG || 'simply_carousel_pro';
 
 /**
  * Webhook handler para eventos de Systeme.io
+ * Eventos soportados:
+ * - sale.completed: Venta realizada
+ * - sale.cancelled: Venta cancelada/reembolsada
+ * - contact.tag.added: Etiqueta asignada a contacto
+ * - contact.tag.removed: Etiqueta removida de contacto
  */
 export async function POST(req: NextRequest) {
     try {
@@ -22,7 +28,7 @@ export async function POST(req: NextRequest) {
 
         // 1. Verificar firma del webhook
         if (!verifySignature(body, signature)) {
-            console.error('Invalid webhook signature');
+            console.error('[Systeme Webhook] Invalid signature');
             return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
         }
 
@@ -32,24 +38,20 @@ export async function POST(req: NextRequest) {
 
         // 2. Procesar según tipo de evento
         switch (event.type) {
-            case 'order.completed':
-                await handleOrderCompleted(event.data);
+            case 'sale.completed':
+                await handleSaleCompleted(event.data);
                 break;
 
-            case 'subscription.activated':
-                await handleSubscriptionActivated(event.data);
+            case 'sale.cancelled':
+                await handleSaleCancelled(event.data);
                 break;
 
-            case 'subscription.cancelled':
-                await handleSubscriptionCancelled(event.data);
+            case 'contact.tag.added':
+                await handleTagAdded(event.data);
                 break;
 
-            case 'subscription.renewed':
-                await handleSubscriptionRenewed(event.data);
-                break;
-
-            case 'subscription.failed':
-                await handleSubscriptionFailed(event.data);
+            case 'contact.tag.removed':
+                await handleTagRemoved(event.data);
                 break;
 
             default:
@@ -84,38 +86,46 @@ function verifySignature(body: string, signature: string | null): boolean {
 }
 
 /**
- * Handler: Order completed (pago inicial exitoso)
+ * Handler: Sale completed (venta realizada)
+ * Se ejecuta cuando se completa un pago inicial
  */
-async function handleOrderCompleted(data: any) {
-    const { contact_email, contact_id, product_id, order_id } = data;
+async function handleSaleCompleted(data: any) {
+    const { contact, order } = data;
+    const email = contact?.email;
+    const contactId = contact?.id;
 
-    console.log('[Systeme Webhook] Order completed:', {
-        email: contact_email,
-        contactId: contact_id,
-        orderId: order_id,
-    });
-
-    // Buscar usuario por email
-    const { data: user, error: userError } = await supabase
-        .from('auth.users')
-        .select('id')
-        .eq('email', contact_email)
-        .single();
-
-    if (userError || !user) {
-        console.error(
-            '[Systeme Webhook] User not found for email:',
-            contact_email,
-            userError
-        );
+    if (!email) {
+        console.error('[Systeme Webhook] Sale completed: missing email');
         return;
     }
 
-    // Crear o actualizar suscripción
+    console.log('[Systeme Webhook] Sale completed:', {
+        email,
+        contactId,
+        orderId: order?.id,
+        amount: order?.amount,
+    });
+
+    // Buscar usuario por email en Supabase
+    const { data: users, error: userError } = await supabase.auth.admin.listUsers();
+
+    if (userError) {
+        console.error('[Systeme Webhook] Error fetching users:', userError);
+        return;
+    }
+
+    const user = users.users.find((u) => u.email === email);
+
+    if (!user) {
+        console.error('[Systeme Webhook] User not found for email:', email);
+        return;
+    }
+
+    // Crear o actualizar suscripción como activa
     const { error: subError } = await supabase.from('subscriptions').upsert(
         {
             user_id: user.id,
-            systeme_contact_id: contact_id,
+            systeme_contact_id: contactId?.toString(),
             plan: 'pro_monthly',
             status: 'active',
             started_at: new Date().toISOString(),
@@ -131,106 +141,167 @@ async function handleOrderCompleted(data: any) {
         return;
     }
 
-    console.log('[Systeme Webhook] ✅ Subscription created for user:', user.id);
+    console.log('[Systeme Webhook] ✅ Subscription activated for user:', user.id);
 }
 
 /**
- * Handler: Subscription activated
+ * Handler: Sale cancelled (venta cancelada o reembolsada)
+ * Se ejecuta cuando se cancela una suscripción o se reembolsa
  */
-async function handleSubscriptionActivated(data: any) {
-    const { contact_id, subscription_id } = data;
+async function handleSaleCancelled(data: any) {
+    const { contact } = data;
+    const email = contact?.email;
+    const contactId = contact?.id;
 
-    console.log('[Systeme Webhook] Subscription activated:', subscription_id);
-
-    const { error } = await supabase
-        .from('subscriptions')
-        .update({
-            systeme_subscription_id: subscription_id,
-            status: 'active',
-            started_at: new Date().toISOString(),
-        })
-        .eq('systeme_contact_id', contact_id);
-
-    if (error) {
-        console.error('[Systeme Webhook] Error activating subscription:', error);
+    if (!email) {
+        console.error('[Systeme Webhook] Sale cancelled: missing email');
         return;
     }
 
-    console.log('[Systeme Webhook] ✅ Subscription activated:', subscription_id);
-}
+    console.log('[Systeme Webhook] Sale cancelled:', { email, contactId });
 
-/**
- * Handler: Subscription cancelled
- */
-async function handleSubscriptionCancelled(data: any) {
-    const { subscription_id } = data;
+    // Buscar usuario por email
+    const { data: users, error: userError } = await supabase.auth.admin.listUsers();
 
-    console.log('[Systeme Webhook] Subscription cancelled:', subscription_id);
+    if (userError) {
+        console.error('[Systeme Webhook] Error fetching users:', userError);
+        return;
+    }
 
+    const user = users.users.find((u) => u.email === email);
+
+    if (!user) {
+        console.error('[Systeme Webhook] User not found for email:', email);
+        return;
+    }
+
+    // Cancelar suscripción
     const { error } = await supabase
         .from('subscriptions')
         .update({
             status: 'cancelled',
             cancelled_at: new Date().toISOString(),
         })
-        .eq('systeme_subscription_id', subscription_id);
+        .eq('user_id', user.id);
 
     if (error) {
         console.error('[Systeme Webhook] Error cancelling subscription:', error);
         return;
     }
 
-    console.log('[Systeme Webhook] ❌ Subscription cancelled:', subscription_id);
+    console.log('[Systeme Webhook] ❌ Subscription cancelled for user:', user.id);
 }
 
 /**
- * Handler: Subscription renewed (pago mensual exitoso)
+ * Handler: Tag added (etiqueta asignada)
+ * Se ejecuta cuando se asigna la etiqueta Pro a un contacto
  */
-async function handleSubscriptionRenewed(data: any) {
-    const { subscription_id, next_billing_date } = data;
+async function handleTagAdded(data: any) {
+    const { contact, tag } = data;
+    const email = contact?.email;
+    const tagName = tag?.name;
 
-    console.log('[Systeme Webhook] Subscription renewed:', subscription_id);
+    if (!email || !tagName) {
+        console.error('[Systeme Webhook] Tag added: missing email or tag name');
+        return;
+    }
 
-    const { error } = await supabase
-        .from('subscriptions')
-        .update({
+    // Solo procesar si es la etiqueta Pro
+    if (tagName.toLowerCase() !== PRO_TAG.toLowerCase()) {
+        console.log('[Systeme Webhook] Ignoring tag:', tagName);
+        return;
+    }
+
+    console.log('[Systeme Webhook] Pro tag added:', { email, tag: tagName });
+
+    // Buscar usuario por email
+    const { data: users, error: userError } = await supabase.auth.admin.listUsers();
+
+    if (userError) {
+        console.error('[Systeme Webhook] Error fetching users:', userError);
+        return;
+    }
+
+    const user = users.users.find((u) => u.email === email);
+
+    if (!user) {
+        console.error('[Systeme Webhook] User not found for email:', email);
+        return;
+    }
+
+    // Activar suscripción Pro
+    const { error: subError } = await supabase.from('subscriptions').upsert(
+        {
+            user_id: user.id,
+            systeme_contact_id: contact?.id?.toString(),
+            plan: 'pro_monthly',
             status: 'active',
-            expires_at: next_billing_date || calculateExpiryDate('pro_monthly'),
-        })
-        .eq('systeme_subscription_id', subscription_id);
+            started_at: new Date().toISOString(),
+            expires_at: calculateExpiryDate('pro_monthly'),
+        },
+        {
+            onConflict: 'user_id',
+        }
+    );
 
-    if (error) {
-        console.error('[Systeme Webhook] Error renewing subscription:', error);
+    if (subError) {
+        console.error('[Systeme Webhook] Error activating Pro:', subError);
         return;
     }
 
-    console.log('[Systeme Webhook] 🔄 Subscription renewed:', subscription_id);
+    console.log('[Systeme Webhook] ✅ Pro activated via tag for user:', user.id);
 }
 
 /**
- * Handler: Payment failed (aplicar grace period)
+ * Handler: Tag removed (etiqueta removida)
+ * Se ejecuta cuando se remueve la etiqueta Pro de un contacto
  */
-async function handleSubscriptionFailed(data: any) {
-    const { subscription_id } = data;
+async function handleTagRemoved(data: any) {
+    const { contact, tag } = data;
+    const email = contact?.email;
+    const tagName = tag?.name;
 
-    console.log('[Systeme Webhook] Payment failed:', subscription_id);
-
-    // Grace period de 7 días
-    const graceExpiry = new Date();
-    graceExpiry.setDate(graceExpiry.getDate() + 7);
-
-    const { error } = await supabase
-        .from('subscriptions')
-        .update({
-            status: 'past_due',
-            expires_at: graceExpiry.toISOString(),
-        })
-        .eq('systeme_subscription_id', subscription_id);
-
-    if (error) {
-        console.error('[Systeme Webhook] Error updating failed payment:', error);
+    if (!email || !tagName) {
+        console.error('[Systeme Webhook] Tag removed: missing email or tag name');
         return;
     }
 
-    console.log('[Systeme Webhook] ⚠️ Payment failed, grace period applied:', subscription_id);
+    // Solo procesar si es la etiqueta Pro
+    if (tagName.toLowerCase() !== PRO_TAG.toLowerCase()) {
+        console.log('[Systeme Webhook] Ignoring tag removal:', tagName);
+        return;
+    }
+
+    console.log('[Systeme Webhook] Pro tag removed:', { email, tag: tagName });
+
+    // Buscar usuario por email
+    const { data: users, error: userError } = await supabase.auth.admin.listUsers();
+
+    if (userError) {
+        console.error('[Systeme Webhook] Error fetching users:', userError);
+        return;
+    }
+
+    const user = users.users.find((u) => u.email === email);
+
+    if (!user) {
+        console.error('[Systeme Webhook] User not found for email:', email);
+        return;
+    }
+
+    // Desactivar suscripción
+    const { error } = await supabase
+        .from('subscriptions')
+        .update({
+            status: 'inactive',
+            cancelled_at: new Date().toISOString(),
+        })
+        .eq('user_id', user.id);
+
+    if (error) {
+        console.error('[Systeme Webhook] Error deactivating Pro:', error);
+        return;
+    }
+
+    console.log('[Systeme Webhook] ❌ Pro deactivated via tag removal for user:', user.id);
 }
