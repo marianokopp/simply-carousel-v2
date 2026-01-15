@@ -32,7 +32,13 @@ export default function CanvasPreview() {
         // Render asíncrono
         const renderPreview = async () => {
             try {
-                const canvas = await renderSlideToCanvas(currentSlide, template, brandKit);
+                const canvas = await renderSlideToCanvas(
+                    currentSlide,
+                    template,
+                    brandKit,
+                    currentSlideIndex + 1, // slideNumber (1-indexed)
+                    totalSlides
+                );
 
                 // Copiar a nuestro canvas de preview
                 const ctx = canvasRef.current?.getContext('2d');

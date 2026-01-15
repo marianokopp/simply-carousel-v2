@@ -74,7 +74,7 @@ export async function POST(request: Request) {
 
         if (!limitCheck.allowed) {
             return NextResponse.json(
-                { 
+                {
                     error: limitCheck.reason,
                     limit: limitCheck.limit,
                     currentCount: limitCheck.currentCount,
@@ -86,6 +86,18 @@ export async function POST(request: Request) {
 
         // Generar carrusel
         const slides = await generateCarousel(prompt, slideCount);
+
+        // Guardar registro del carrusel creado
+        const { error: insertError } = await supabase.from('carousels').insert({
+            user_id: user.id,
+            title: slides[0]?.title || prompt.substring(0, 100),
+            slide_count: slideCount,
+        });
+
+        if (insertError) {
+            console.error('Error saving carousel record:', insertError);
+            // No bloqueamos la respuesta, solo logueamos el error
+        }
 
         // Retornar slides
         return NextResponse.json({ slides }, { status: 200 });

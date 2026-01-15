@@ -14,12 +14,16 @@ import { slideContentToSlideData } from '../contentMapper';
  * @param slideData - Slide content (UI format)
  * @param template - Template configuration
  * @param brandKit - Brand kit configuration
+ * @param slideNumber - Current slide number (1-indexed)
+ * @param totalSlides - Total number of slides in carousel
  * @returns Promise<HTMLCanvasElement> with rendered slide
  */
 export async function renderSlideToCanvas(
     slideData: SlideContent,
     template: Template,
-    brandKit: BrandKit
+    brandKit: BrandKit,
+    slideNumber: number = 1,
+    totalSlides: number = 1
 ): Promise<HTMLCanvasElement> {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -35,8 +39,8 @@ export async function renderSlideToCanvas(
     // Convert SlideContent to SlideData
     const renderData: SlideData = slideContentToSlideData(
         slideData,
-        0, // index - will be correct when rendering from list
-        1, // totalSlides - will be correct when rendering from list
+        slideNumber,
+        totalSlides,
         template,
         brandKit
     );

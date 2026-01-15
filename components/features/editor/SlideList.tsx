@@ -22,7 +22,11 @@ export default function SlideList() {
     /**
      * Renderiza un thumbnail del slide (async)
      */
-    const renderThumbnail = async (slide: SlideContent, canvasRef: HTMLCanvasElement | null) => {
+    const renderThumbnail = async (
+        slide: SlideContent,
+        slideIndex: number,
+        canvasRef: HTMLCanvasElement | null
+    ) => {
         if (!canvasRef) return;
 
         const template = getTemplateById(templateId);
@@ -30,7 +34,13 @@ export default function SlideList() {
 
         try {
             // Renderizar slide en canvas pequeño (await async rendering)
-            const canvas = await renderSlideToCanvas(slide, template, brandKit);
+            const canvas = await renderSlideToCanvas(
+                slide,
+                template,
+                brandKit,
+                slideIndex + 1, // 1-indexed
+                slides.length
+            );
 
             // Copiar a nuestro canvas thumbnail
             const ctx = canvasRef.getContext('2d');
@@ -59,6 +69,7 @@ export default function SlideList() {
                         key={index}
                         slide={slide}
                         index={index}
+                        totalSlides={slides.length}
                         isActive={currentSlideIndex === index}
                         onClick={() => setCurrentSlide(index)}
                         onEdit={() => setEditingSlideIndex(index)}
@@ -95,10 +106,11 @@ function ThumbnailCard({
 }: {
     slide: SlideContent;
     index: number;
+    totalSlides: number;
     isActive: boolean;
     onClick: () => void;
     onEdit: () => void;
-    onRender: (slide: SlideContent, canvas: HTMLCanvasElement | null) => Promise<void>;
+    onRender: (slide: SlideContent, index: number, canvas: HTMLCanvasElement | null) => Promise<void>;
     templateId: string;
     brandKit: any;
 }) {
@@ -106,8 +118,8 @@ function ThumbnailCard({
 
     // Re-renderizar cuando cambie template o brandKit
     useEffect(() => {
-        onRender(slide, canvasRef.current);
-    }, [slide, templateId, brandKit, onRender]);
+        onRender(slide, index, canvasRef.current);
+    }, [slide, index, templateId, brandKit, onRender]);
 
     // Obtener título para mostrar
     const getTitle = () => {
