@@ -17,7 +17,7 @@ export default function GeneratorPage() {
 
             <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-8 px-4">
                 {/* Header: Logo + Avatar + Counter en la misma línea */}
-                <div className="max-w-3xl mx-auto mb-8">
+                <div className="max-w-3xl mx-auto mb-4">
                     <div className="flex items-center justify-between">
                         {/* Logo izquierda */}
                         <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -35,14 +35,14 @@ export default function GeneratorPage() {
                     </div>
                 </div>
 
-                {/* Título centrado: Paso 1 */}
-                <div className="max-w-3xl mx-auto mb-12">
+                {/* Título centrado más cerca del cuadro */}
+                <div className="max-w-3xl mx-auto mb-8">
                     <div className="text-center">
                         <p className="text-gray-600 text-lg">Paso 1: Genera contenido con IA</p>
                     </div>
                 </div>
 
-                {/* Generator Form - SIN subtítulo "Genera tu carrusel con IA" */}
+                {/* Generator Form */}
                 <GeneratorForm />
 
                 {/* Footer indicator */}

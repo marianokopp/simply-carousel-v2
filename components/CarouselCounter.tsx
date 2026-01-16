@@ -53,9 +53,9 @@ export default function CarouselCounter() {
 
     return (
         <div className="space-y-2">
-            <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center justify-between text-xs">
                 <span className="text-gray-600 dark:text-gray-400">
-                    Carruseles este mes
+                    Carruseles este mes 👨💼
                 </span>
                 <span className={`font-semibold ${remaining === 0 ? 'text-red-600' :
                     remaining <= 2 ? 'text-yellow-600' :
