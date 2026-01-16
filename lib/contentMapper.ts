@@ -31,7 +31,8 @@ export function slideContentToSlideData(
         slideNumber: index + 1,
         totalSlides,
         content: {
-            label: undefined,
+            number: slide.number, // Número generado por IA (editable)
+            label: slide.label,
             title: slide.title || '',
             tag: slide.tag,
             body: slide.body,

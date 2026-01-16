@@ -28,7 +28,9 @@ export async function renderTextSlots(
         switch (slotName) {
             case 'slide_number':
                 if (type === 'body') {
-                    textContent = formatSlideNumber(
+                    // Usar el número generado por IA (editable) si existe,
+                    // de lo contrario usar el índice formateado
+                    textContent = content.number || formatSlideNumber(
                         slideNumber,
                         totalSlides,
                         slot.numberFormat || '01'

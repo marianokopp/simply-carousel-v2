@@ -66,6 +66,7 @@ export interface SlideData {
   slideNumber: number;
   totalSlides: number;
   content: {
+    number?: string; // Número del slide generado por IA (editable)
     label?: string;
     title: string;
     tag?: string;
