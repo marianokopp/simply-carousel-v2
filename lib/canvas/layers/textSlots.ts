@@ -176,14 +176,13 @@ function renderTextWithEmphasis(
     // Convert segments to words with styles
     const words: WordWithStyle[] = [];
     segments.forEach((seg: any) => {
-        const segWords = seg.text.split(' ');
+        // Split por espacios (uno o más) y filtrar vacíos
+        const segWords = seg.text.split(/\s+/).filter((w: string) => w.length > 0);
         segWords.forEach((word: string) => {
-            if (word) {
-                words.push({
-                    text: word,
-                    emphasized: seg.emphasized,
-                });
-            }
+            words.push({
+                text: word,
+                emphasized: seg.emphasized,
+            });
         });
     });
 
