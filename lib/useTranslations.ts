@@ -5,14 +5,12 @@ import esMessages from '@/messages/es.json';
 import enMessages from '@/messages/en.json';
 
 type Messages = typeof esMessages;
-type MessageKey = keyof Messages;
-type NestedKey<T> = T extends object ? keyof T : never;
 
 /**
  * Hook simple para traducciones sin librerías externas
  * Detecta el idioma desde la URL (/en/...) o usa español por defecto
  */
-export function useTranslations<T extends MessageKey>(namespace: T) {
+export function useTranslations<T extends keyof Messages>(namespace: T) {
     const pathname = usePathname();
 
     // Detectar idioma desde URL
@@ -20,12 +18,23 @@ export function useTranslations<T extends MessageKey>(namespace: T) {
 
     // Seleccionar mensajes según idioma
     const allMessages = locale === 'en' ? enMessages : esMessages;
-    const messages = allMessages[namespace] as Messages[T];
+    const messages = allMessages[namespace];
 
-    // Función de traducción
-    const t = (key: NestedKey<Messages[T]>): string => {
-        const value = (messages as any)[key];
-        return value || key as string;
+    // Función de traducción que soporta claves anidadas
+    const t = (key: string): string => {
+        // Soportar claves anidadas como 'aiGeneration.title'
+        const keys = key.split('.');
+        let value: any = messages;
+
+        for (const k of keys) {
+            if (value && typeof value === 'object') {
+                value = value[k];
+            } else {
+                return key; // Fallback al key si no encuentra el valor
+            }
+        }
+
+        return typeof value === 'string' ? value : key;
     };
 
     return t;
