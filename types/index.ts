@@ -310,6 +310,7 @@ export interface CarouselState {
   setCurrentSlide: (index: number) => void;
   setTemplate: (templateId: string) => void;
   setBrandKit: (brandKit: Partial<BrandKit>) => void;
+  updateSlideContent: (index: number, content: SlideContent["content"]) => void;
   reset: () => void;
 }
 

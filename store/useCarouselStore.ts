@@ -33,6 +33,13 @@ export const useCarouselStore = create<CarouselState>((set) => ({
             brandKit: { ...state.brandKit, ...brandKitPartial },
         })),
 
+    updateSlideContent: (index: number, content: SlideContent['content']) =>
+        set((state) => ({
+            slides: state.slides.map((slide, i) =>
+                i === index ? { ...slide, content } : slide
+            ),
+        })),
+
     reset: () =>
         set({
             slides: [],
