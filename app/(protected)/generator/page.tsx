@@ -1,5 +1,7 @@
 import GeneratorForm from '@/components/features/generator/GeneratorForm';
 import CarouselCounter from '@/components/CarouselCounter';
+import UserAvatar from '@/components/UserAvatar';
+import InactivityLogout from '@/components/InactivityLogout';
 
 /**
  * Página del generador de carruseles con IA
@@ -9,36 +11,49 @@ import CarouselCounter from '@/components/CarouselCounter';
  */
 export default function GeneratorPage() {
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
-            {/* Header */}
-            <div className="max-w-3xl mx-auto mb-12">
-                <div className="text-center space-y-4">
-                    <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                        Simply Carousel
-                    </h2>
-                    <p className="text-gray-600">Paso 1: Genera el contenido</p>
+        <>
+            {/* Auto-logout por inactividad */}
+            <InactivityLogout />
 
-                    {/* Contador de carruseles */}
-                    <div className="max-w-sm mx-auto">
-                        <CarouselCounter />
+            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
+                {/* Header con Avatar */}
+                <div className="max-w-3xl mx-auto mb-8">
+                    <div className="flex items-center justify-between">
+                        <div className="flex-1"></div>
+                        <UserAvatar />
                     </div>
                 </div>
-            </div>
 
-            {/* Generator Form */}
-            <GeneratorForm />
+                {/* Header */}
+                <div className="max-w-3xl mx-auto mb-12">
+                    <div className="text-center space-y-4">
+                        <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            Simply Carousel
+                        </h2>
+                        <p className="text-gray-600">Genera contenido con IA</p>
 
-            {/* Footer indicator */}
-            <div className="max-w-3xl mx-auto mt-12">
-                <div className="flex items-center justify-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-blue-600"></div>
-                    <div className="h-2 w-2 rounded-full bg-gray-200"></div>
-                    <div className="h-2 w-2 rounded-full bg-gray-200"></div>
+                        {/* Contador de carruseles */}
+                        <div className="max-w-sm mx-auto">
+                            <CarouselCounter />
+                        </div>
+                    </div>
                 </div>
-                <p className="text-center text-sm text-gray-500 mt-3">
-                    Paso 1 de 3: Generación
-                </p>
+
+                {/* Generator Form */}
+                <GeneratorForm />
+
+                {/* Footer indicator */}
+                <div className="max-w-3xl mx-auto mt-12">
+                    <div className="flex items-center justify-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-blue-600"></div>
+                        <div className="h-2 w-2 rounded-full bg-gray-200"></div>
+                        <div className="h-2 w-2 rounded-full bg-gray-200"></div>
+                    </div>
+                    <p className="text-center text-sm text-gray-500 mt-3">
+                        Paso 1 de 3: Generación
+                    </p>
+                </div>
             </div>
-        </div>
+        </>
     );
 }

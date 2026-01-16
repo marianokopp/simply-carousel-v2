@@ -81,14 +81,8 @@ export default function GeneratorForm() {
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Prompt textarea */}
+                    {/* Prompt textarea - SIN LABEL */}
                     <div>
-                        <label
-                            htmlFor="prompt"
-                            className="block text-sm font-medium text-gray-700 mb-2"
-                        >
-                            ¿Sobre qué quieres crear tu carrusel?
-                        </label>
                         <textarea
                             id="prompt"
                             value={prompt}
@@ -109,14 +103,8 @@ export default function GeneratorForm() {
                         </div>
                     </div>
 
-                    {/* Slide count selector */}
+                    {/* Slide count selector - SIN LABEL "Cantidad de slides" */}
                     <div>
-                        <label
-                            htmlFor="slideCount"
-                            className="block text-sm font-medium text-gray-700 mb-2"
-                        >
-                            Cantidad de slides
-                        </label>
                         <div className="grid grid-cols-3 gap-3">
                             {([5, 7, 10] as const).map((count) => (
                                 <button
@@ -133,9 +121,7 @@ export default function GeneratorForm() {
                                 </button>
                             ))}
                         </div>
-                        <p className="mt-2 text-xs text-gray-500">
-                            Incluye slide de hook inicial y CTA final
-                        </p>
+                        {/* ELIMINADO: "Incluye slide de hook inicial y CTA final" */}
                     </div>
 
                     {/* Submit button */}

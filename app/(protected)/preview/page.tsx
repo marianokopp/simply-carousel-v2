@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { useCarouselStore } from '@/store/useCarouselStore';
 import SlideGallery from '@/components/features/preview/SlideGallery';
 import ExportPanel from '@/components/features/preview/ExportPanel';
+import UserAvatar from '@/components/UserAvatar';
+import InactivityLogout from '@/components/InactivityLogout';
 
 /**
  * Página de Preview Final
