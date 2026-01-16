@@ -18,7 +18,7 @@ export default function Hero() {
                     {/* Badge */}
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 border border-purple-200 dark:border-purple-700 text-purple-700 dark:text-purple-300 text-xs font-bold uppercase tracking-wider">
                         <span className="relative flex h-2 w-2">
-                            <spanClassName="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-600 opacity-75"></span>
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-600 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-600"></span>
                     </span>
                     {t('badge')}
