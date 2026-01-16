@@ -15,31 +15,34 @@ export default function GeneratorPage() {
             {/* Auto-logout por inactividad */}
             <InactivityLogout />
 
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
-                {/* Header con Avatar */}
+            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-8 px-4">
+                {/* Header: Logo + Avatar + Counter en la misma línea */}
                 <div className="max-w-3xl mx-auto mb-8">
                     <div className="flex items-center justify-between">
-                        <div className="flex-1"></div>
-                        <UserAvatar />
-                    </div>
-                </div>
-
-                {/* Header */}
-                <div className="max-w-3xl mx-auto mb-12">
-                    <div className="text-center space-y-4">
-                        <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        {/* Logo izquierda */}
+                        <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                             Simply Carousel
                         </h2>
-                        <p className="text-gray-600">Genera contenido con IA</p>
 
-                        {/* Contador de carruseles */}
-                        <div className="max-w-sm mx-auto">
-                            <CarouselCounter />
+                        {/* Avatar + Counter derecha */}
+                        <div className="flex items-center gap-3">
+                            {/* Contador compacto */}
+                            <div className="max-w-[200px]">
+                                <CarouselCounter />
+                            </div>
+                            <UserAvatar />
                         </div>
                     </div>
                 </div>
 
-                {/* Generator Form */}
+                {/* Título centrado: Paso 1 */}
+                <div className="max-w-3xl mx-auto mb-12">
+                    <div className="text-center">
+                        <p className="text-gray-600 text-lg">Paso 1: Genera contenido con IA</p>
+                    </div>
+                </div>
+
+                {/* Generator Form - SIN subtítulo "Genera tu carrusel con IA" */}
                 <GeneratorForm />
 
                 {/* Footer indicator */}

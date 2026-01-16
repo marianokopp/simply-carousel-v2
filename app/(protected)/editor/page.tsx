@@ -49,7 +49,7 @@ export default function EditorPage() {
                     {/* Logo/Title */}
                     <div className="flex items-center gap-2">
                         <Logo size={28} />
-                        <p className="text-xs text-gray-500 hidden sm:block mt-1">| Edita tu carrusel</p>
+                        <p className="text-xs text-gray-500 hidden sm:block mt-1">Paso 2: Edita tu carrusel</p>
                     </div>
 
                     {/* Right side: Avatar + Action buttons */}

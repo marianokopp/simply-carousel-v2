@@ -62,16 +62,6 @@ export default function GeneratorForm() {
     return (
         <div className="w-full max-w-3xl mx-auto">
             <div className="bg-white rounded-2xl shadow-lg p-8">
-                {/* Header */}
-                <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-3">
-                        Genera tu carrusel con IA
-                    </h1>
-                    <p className="text-gray-600">
-                        Describe el tema de tu carrusel y la IA creará el contenido por ti
-                    </p>
-                </div>
-
                 {/* Error message */}
                 {error && (
                     <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
@@ -113,8 +103,8 @@ export default function GeneratorForm() {
                                     onClick={() => setSlideCount(count)}
                                     disabled={isLoading}
                                     className={`px-4 py-3 rounded-lg font-medium transition-all ${slideCount === count
-                                            ? 'bg-blue-600 text-white shadow-md'
-                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                        ? 'bg-blue-600 text-white shadow-md'
+                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                         } disabled:opacity-50 disabled:cursor-not-allowed`}
                                 >
                                     {count} slides
