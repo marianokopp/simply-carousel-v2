@@ -9,7 +9,11 @@ export function wrapText(
     text: string,
     maxWidth: number
 ): string[] {
-    const words = text.split(' ');
+    // Split por espacios (uno o más) y filtrar vacíos
+    const words = text.split(/\s+/).filter(w => w.length > 0);
+
+    if (words.length === 0) return [''];
+
     const lines: string[] = [];
     let currentLine = words[0];
 
