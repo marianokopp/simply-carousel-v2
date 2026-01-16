@@ -1,11 +1,14 @@
 'use client';
 
 import Link from 'next/link';
+import { useTranslations } from '@/lib/useTranslations';
 
 /**
  * CTA Section final con mensaje persuasivo
  */
 export default function CTASection() {
+    const t = useTranslations('cta');
+
     return (
         <section className="max-w-[1280px] mx-auto px-6 lg:px-10 py-24">
             <div className="bg-gradient-to-br from-gray-900 via-black to-gray-950 rounded-[2rem] p-12 lg:p-24 relative overflow-hidden shadow-2xl border border-gray-800">
@@ -16,10 +19,10 @@ export default function CTASection() {
                 {/* Content */}
                 <div className="relative z-10 text-center space-y-8">
                     <h2 className="text-white text-4xl lg:text-6xl font-black tracking-tight max-w-[800px] mx-auto">
-                        ¿Listo para ahorrar horas de diseño?
+                        {t('title')}
                     </h2>
                     <p className="text-white text-lg lg:text-xl max-w-[600px] mx-auto font-medium">
-                        Únete a +2,000 profesionales que ya están creando carruseles en minutos, no horas.
+                        {t('subtitle')}
                     </p>
 
                     {/* CTAs */}
@@ -31,18 +34,16 @@ export default function CTASection() {
                                 href="/login"
                                 className="relative bg-gradient-to-r from-purple-600 to-pink-600 text-white text-lg font-bold px-10 py-4 rounded-xl hover:scale-[1.05] transition-all shadow-2xl block text-center"
                             >
-                                Empieza ahora gratis
+                                {t('button')}
                             </Link>
                         </div>
                         <Link
                             href="#pricing"
                             className="bg-white/10 border-2 border-white/20 text-white text-lg font-bold px-10 py-4 rounded-xl hover:bg-white/20 transition-all backdrop-blur-sm"
                         >
-                            Ver planes Pro
+                            {t('learnMore')}
                         </Link>
                     </div>
-
-                    <p className="text-white/80 text-sm">⚡ Crea tu primer carrusel en menos de 3 minutos</p>
                 </div>
             </div>
         </section>
