@@ -1,0 +1,153 @@
+{
+    "common": {
+        "appName": "Simply Carousel",
+        "loading": "Cargando..."
+    },
+    "nav": {
+        "features": "Características",
+        "howItWorks": "Cómo Funciona",
+        "pricing": "Precios",
+        "login": "Iniciar Sesión",
+        "getStarted": "Empezar Gratis"
+    },
+    "hero": {
+        "title": "Crea Carruseles para Instagram",
+        "subtitle": "con IA en segundos",
+        "description": "Diseña carruseles impactantes para Instagram sin esfuerzo. Solo ingresa tu tema y deja que nuestra IA genere contenido profesional listo para publicar.",
+        "cta": "Crear Mi Carrusel Gratis",
+        "benefit1": "Genera contenido con IA",
+        "benefit2": "Diseños listos para usar",
+        "benefit3": "Descarga en segundos"
+    },
+    "features": {
+        "title": "Todo lo que necesitas",
+        "subtitle": "para crear carruseles impactantes",
+        "aiGeneration": {
+            "title": "Contenido con IA",
+            "description": "Claude AI genera títulos, cuerpo y CTAs atractivos basados en tu tema."
+        },
+        "professionalDesigns": {
+            "title": "Diseños Profesionales",
+            "description": "Templates modernos y minimalistas que destacan tu contenido."
+        },
+        "brandCustomization": {
+            "title": "Personalización de Marca",
+            "description": "Agrega tu logo, colores y handle para mantener consistencia visual."
+        },
+        "instantExport": {
+            "title": "Exportación Instantánea",
+            "description": "Descarga tu carrusel en PNG listo para subir a Instagram."
+        }
+    },
+    "howItWorks": {
+        "title": "Cómo Funciona",
+        "subtitle": "Crea tu carrusel en 3 simples pasos",
+        "step1": {
+            "title": "Describe tu tema",
+            "description": "Ingresa de qué quieres hablar y cuántos slides necesitas."
+        },
+        "step2": {
+            "title": "IA genera contenido",
+            "description": "Claude AI crea títulos, textos y estructura de forma automática."
+        },
+        "step3": {
+            "title": "Personaliza y descarga",
+            "description": "Elige tu template favorito, personaliza colores y descarga."
+        }
+    },
+    "pricing": {
+        "title": "Planes Simples y Claros",
+        "subtitle": "Elige el plan que mejor se adapte a tus necesidades",
+        "monthly": "/ mes",
+        "startFree": "Empezar Gratis",
+        "upgradeToPro": "Actualizar a Pro",
+        "recommended": "Recomendado",
+        "limitNote": "Los límites se reinician cada mes",
+        "free": {
+            "name": "Free",
+            "price": "$0",
+            "description": "Perfecto para probar",
+            "feature1": "3 carruseles por mes",
+            "feature2": "Todos los templates",
+            "feature3": "Personalización de marca",
+            "feature4": "Exportación PNG"
+        },
+        "pro": {
+            "name": "Pro",
+            "price": "$5.99",
+            "description": "Para creadores activos",
+            "feature1": "30 carruseles por mes",
+            "feature2": "Todos los templates",
+            "feature3": "Personalización de marca",
+            "feature4": "Exportación PNG",
+            "feature5": "Soporte prioritario"
+        }
+    },
+    "cta": {
+        "title": "¿Listo para crear contenido increíble?",
+        "subtitle": "Únete a miles de creadores que ya están usando Simply Carousel",
+        "button": "Empezar Gratis Ahora",
+        "learnMore": "Saber Más"
+    },
+    "footer": {
+        "product": "Producto",
+        "features": "Características",
+        "pricing": "Precios",
+        "howItWorks": "Cómo Funciona",
+        "legal": "Legal",
+        "privacy": "Privacidad",
+        "terms": "Términos",
+        "tagline": "La forma más rápida de crear carruseles para Instagram con IA.",
+        "rights": "Todos los derechos reservados."
+    },
+    "generator": {
+        "title": "Simply Carousel",
+        "step": "Paso 1: Genera el contenido",
+        "prompt": "Tema del carrusel",
+        "promptPlaceholder": "Ej: 5 estrategias de marketing digital para emprendedores",
+        "slideCount": "Número de slides",
+        "generate": "Generar Carrusel",
+        "generating": "Generando...",
+        "carouselsRemaining": "Carruseles este mes",
+        "limitReached": "Límite alcanzado.",
+        "upgradeToPro": "Upgrade a Pro",
+        "createMore": "para crear hasta 30/mes",
+        "limitResets": "Se reinicia el 1° del mes.",
+        "onlyRemaining": "Quedan solo",
+        "carousels": "carruseles."
+    },
+    "editor": {
+        "title": "Edita tu carrusel",
+        "design": "Diseño",
+        "template": "Plantilla",
+        "brandKit": "Kit de Marca",
+        "author": "Autor",
+        "back": "← Volver",
+        "continue": "Finalizar →",
+        "editSlide": "Editar slide",
+        "slides": "Slides"
+    },
+    "preview": {
+        "title": "Descargar Carrusel",
+        "slides": "slides",
+        "downloadZip": "Descargar ZIP",
+        "downloadPngs": "📱 Descargar PNGs Individuales",
+        "exporting": "Exportando...",
+        "zipContents": "📦 Contenido del ZIP",
+        "files": "archivos PNG",
+        "resolution": "Resolución: 1080x1350px",
+        "naming": "Nombres: carousel-slide-01.png, 02...",
+        "readyForInstagram": "Listos para subir a Instagram",
+        "editCarousel": "← Editar Carrusel",
+        "createAnother": "Crear Otro Carrusel"
+    },
+    "auth": {
+        "loginTitle": "Bienvenido de vuelta",
+        "loginSubtitle": "Crea carruseles impactantes para Instagram con IA en minutos. Genera contenido profesional sin esfuerzo.",
+        "signInWithGoogle": "Continuar con Google",
+        "termsPrefix": "Al continuar, aceptas nuestros",
+        "termsLink": "Términos y Condiciones",
+        "and": "y",
+        "privacyLink": "Política de Privacidad"
+    }
+}

@@ -1,0 +1,153 @@
+{
+    "common": {
+        "appName": "Simply Carousel",
+        "loading": "Loading..."
+    },
+    "nav": {
+        "features": "Features",
+        "howItWorks": "How It Works",
+        "pricing": "Pricing",
+        "login": "Login",
+        "getStarted": "Get Started Free"
+    },
+    "hero": {
+        "title": "Create Instagram Carousels",
+        "subtitle": "with AI in seconds",
+        "description": "Design stunning Instagram carousels effortlessly. Just enter your topic and let our AI generate professional content ready to post.",
+        "cta": "Create My Free Carousel",
+        "benefit1": "AI-generated content",
+        "benefit2": "Ready-to-use designs",
+        "benefit3": "Download in seconds"
+    },
+    "features": {
+        "title": "Everything you need",
+        "subtitle": "to create stunning carousels",
+        "aiGeneration": {
+            "title": "AI Content",
+            "description": "Claude AI generates engaging titles, body text, and CTAs based on your topic."
+        },
+        "professionalDesigns": {
+            "title": "Professional Designs",
+            "description": "Modern and minimalist templates that highlight your content."
+        },
+        "brandCustomization": {
+            "title": "Brand Customization",
+            "description": "Add your logo, colors, and handle to maintain visual consistency."
+        },
+        "instantExport": {
+            "title": "Instant Export",
+            "description": "Download your carousel in PNG ready to upload to Instagram."
+        }
+    },
+    "howItWorks": {
+        "title": "How It Works",
+        "subtitle": "Create your carousel in 3 simple steps",
+        "step1": {
+            "title": "Describe your topic",
+            "description": "Enter what you want to talk about and how many slides you need."
+        },
+        "step2": {
+            "title": "AI generates content",
+            "description": "Claude AI creates titles, text, and structure automatically."
+        },
+        "step3": {
+            "title": "Customize and download",
+            "description": "Choose your favorite template, customize colors, and download."
+        }
+    },
+    "pricing": {
+        "title": "Simple and Clear Plans",
+        "subtitle": "Choose the plan that best fits your needs",
+        "monthly": "/ month",
+        "startFree": "Start Free",
+        "upgradeToPro": "Upgrade to Pro",
+        "recommended": "Recommended",
+        "limitNote": "Limits reset every month",
+        "free": {
+            "name": "Free",
+            "price": "$0",
+            "description": "Perfect to try it out",
+            "feature1": "3 carousels per month",
+            "feature2": "All templates",
+            "feature3": "Brand customization",
+            "feature4": "PNG export"
+        },
+        "pro": {
+            "name": "Pro",
+            "price": "$5.99",
+            "description": "For active creators",
+            "feature1": "30 carousels per month",
+            "feature2": "All templates",
+            "feature3": "Brand customization",
+            "feature4": "PNG export",
+            "feature5": "Priority support"
+        }
+    },
+    "cta": {
+        "title": "Ready to create amazing content?",
+        "subtitle": "Join thousands of creators already using Simply Carousel",
+        "button": "Start Free Now",
+        "learnMore": "Learn More"
+    },
+    "footer": {
+        "product": "Product",
+        "features": "Features",
+        "pricing": "Pricing",
+        "howItWorks": "How It Works",
+        "legal": "Legal",
+        "privacy": "Privacy",
+        "terms": "Terms",
+        "tagline": "The fastest way to create Instagram carousels with AI.",
+        "rights": "All rights reserved."
+    },
+    "generator": {
+        "title": "Simply Carousel",
+        "step": "Step 1: Generate content",
+        "prompt": "Carousel topic",
+        "promptPlaceholder": "Ex: 5 digital marketing strategies for entrepreneurs",
+        "slideCount": "Number of slides",
+        "generate": "Generate Carousel",
+        "generating": "Generating...",
+        "carouselsRemaining": "Carousels this month",
+        "limitReached": "Limit reached.",
+        "upgradeToPro": "Upgrade to Pro",
+        "createMore": "to create up to 30/month",
+        "limitResets": "Resets on the 1st of the month.",
+        "onlyRemaining": "Only",
+        "carousels": "carousels remaining."
+    },
+    "editor": {
+        "title": "Edit your carousel",
+        "design": "Design",
+        "template": "Template",
+        "brandKit": "Brand Kit",
+        "author": "Author",
+        "back": "← Back",
+        "continue": "Finish →",
+        "editSlide": "Edit slide",
+        "slides": "Slides"
+    },
+    "preview": {
+        "title": "Download Carousel",
+        "slides": "slides",
+        "downloadZip": "Download ZIP",
+        "downloadPngs": "📱 Download Individual PNGs",
+        "exporting": "Exporting...",
+        "zipContents": "📦 ZIP Contents",
+        "files": "PNG files",
+        "resolution": "Resolution: 1080x1350px",
+        "naming": "Names: carousel-slide-01.png, 02...",
+        "readyForInstagram": "Ready to upload to Instagram",
+        "editCarousel": "← Edit Carousel",
+        "createAnother": "Create Another Carousel"
+    },
+    "auth": {
+        "loginTitle": "Welcome back",
+        "loginSubtitle": "Create stunning Instagram carousels with AI in minutes. Generate professional content effortlessly.",
+        "signInWithGoogle": "Continue with Google",
+        "termsPrefix": "By continuing, you agree to our",
+        "termsLink": "Terms and Conditions",
+        "and": "and",
+        "privacyLink": "Privacy Policy"
+    }
+}
