@@ -37,7 +37,13 @@ export default function ExportPanel() {
                 const slide = slides[i];
 
                 // Renderizar slide (await async rendering)
-                const canvas = await renderSlideToCanvas(slide, template, brandKit);
+                const canvas = await renderSlideToCanvas(
+                    slide,
+                    template,
+                    brandKit,
+                    i + 1,
+                    slides.length
+                );
 
                 // Convertir a PNG blob
                 const blob = await new Promise<Blob>((resolve) => {
@@ -84,6 +90,61 @@ export default function ExportPanel() {
         } catch (error) {
             console.error('Error exporting ZIP:', error);
             alert('Error al exportar el carrusel. Intenta nuevamente.');
+        } finally {
+            setIsExporting(false);
+        }
+    };
+
+    /**
+     * Descarga todas las imágenes PNG individualmente
+     * Útil para móviles donde se guardan directamente en el rollo fotográfico
+     */
+    const handleDownloadPNGs = async () => {
+        setIsExporting(true);
+
+        try {
+            const template = getTemplateById(templateId);
+            if (!template) throw new Error('Template not found');
+
+            // Renderizar y descargar cada slide
+            for (let i = 0; i < slides.length; i++) {
+                const slide = slides[i];
+
+                // Renderizar slide
+                const canvas = await renderSlideToCanvas(
+                    slide,
+                    template,
+                    brandKit,
+                    i + 1,
+                    slides.length
+                );
+
+                // Convertir a PNG blob
+                const blob = await new Promise<Blob>((resolve) => {
+                    canvas.toBlob((blob) => {
+                        if (blob) resolve(blob);
+                    }, 'image/png', 0.95);
+                });
+
+                // Descargar imagen individual
+                const fileName = `carousel-slide-${String(i + 1).padStart(2, '0')}.png`;
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = fileName;
+
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+
+                // Pequeño delay entre descargas para evitar bloqueo del navegador
+                await new Promise(resolve => setTimeout(resolve, 300));
+            }
+
+        } catch (error) {
+            console.error('Error exporting PNGs:', error);
+            alert('Error al exportar las imágenes. Intenta nuevamente.');
         } finally {
             setIsExporting(false);
         }
@@ -158,6 +219,28 @@ export default function ExportPanel() {
                             Descargar ZIP
                         </span>
                     )}
+                </button>
+
+                {/* Download PNGs button */}
+                <button
+                    onClick={handleDownloadPNGs}
+                    disabled={isExporting}
+                    className="w-full px-6 py-4 bg-white border-2 border-blue-600 text-blue-600 rounded-lg font-semibold hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    <span className="flex items-center justify-center gap-2">
+                        <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        📱 Descargar PNGs Individuales
+                    </span>
                 </button>
 
                 {/* Info box */}
