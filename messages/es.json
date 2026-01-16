@@ -11,11 +11,13 @@
         "getStarted": "Empezar Gratis"
     },
     "hero": {
-        "title": "Crea Carruseles para Instagram",
-        "subtitle": "con IA en segundos",
-        "description": "Diseña carruseles impactantes para Instagram sin esfuerzo. Solo ingresa tu tema y deja que nuestra IA genere contenido profesional listo para publicar.",
-        "cta": "Crear Mi Carrusel Gratis",
-        "benefit1": "Genera contenido con IA",
+        "badge": "Con IA Generativa",
+        "title": "Crea carruseles profesionales en",
+        "subtitle": "menos de 3 minutos",
+        "painPoint": "No necesitas saber diseñar.",
+        "description": "No más horas perdidas en Canva o Figma. Enfócate en tu contenido, nosotros nos encargamos del diseño.",
+        "cta": "Empieza gratis",
+        "benefit1": "Contenido generado con IA",
         "benefit2": "Diseños listos para usar",
         "benefit3": "Descarga en segundos"
     },

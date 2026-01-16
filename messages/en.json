@@ -7,68 +7,70 @@
         "features": "Features",
         "howItWorks": "How It Works",
         "pricing": "Pricing",
-        "login": "Login",
+        "login": "Log In",
         "getStarted": "Get Started Free"
     },
     "hero": {
-        "title": "Create Instagram Carousels",
-        "subtitle": "with AI in seconds",
-        "description": "Design stunning Instagram carousels effortlessly. Just enter your topic and let our AI generate professional content ready to post.",
-        "cta": "Create My Free Carousel",
+        "badge": "Powered by AI",
+        "title": "Create stunning carousels in",
+        "subtitle": "under 3 minutes",
+        "painPoint": "Zero design skills needed.",
+        "description": "Stop wasting hours on Canva or Figma. Focus on your message, we'll handle the design.",
+        "cta": "Start for Free",
         "benefit1": "AI-generated content",
         "benefit2": "Ready-to-use designs",
         "benefit3": "Download in seconds"
     },
     "features": {
         "title": "Everything you need",
-        "subtitle": "to create stunning carousels",
+        "subtitle": "to create scroll-stopping carousels",
         "aiGeneration": {
-            "title": "AI Content",
-            "description": "Claude AI generates engaging titles, body text, and CTAs based on your topic."
+            "title": "AI Content Generation",
+            "description": "Claude AI crafts engaging titles, body copy, and CTAs tailored to your topic—no brainstorming required."
         },
         "professionalDesigns": {
-            "title": "Professional Designs",
-            "description": "Modern and minimalist templates that highlight your content."
+            "title": "Professional Templates",
+            "description": "Modern, minimalist designs that make your content shine. Switch templates in one click."
         },
         "brandCustomization": {
-            "title": "Brand Customization",
-            "description": "Add your logo, colors, and handle to maintain visual consistency."
+            "title": "Brand Your Way",
+            "description": "Add your logo, pick your colors, include your handle—keep your visual identity consistent."
         },
         "instantExport": {
-            "title": "Instant Export",
-            "description": "Download your carousel in PNG ready to upload to Instagram."
+            "title": "Export & Go",
+            "description": "Download as PNG, ready to upload to Instagram. No extra steps, no file conversion."
         }
     },
     "howItWorks": {
         "title": "How It Works",
-        "subtitle": "Create your carousel in 3 simple steps",
+        "subtitle": "Get your carousel ready in 3 easy steps",
         "step1": {
-            "title": "Describe your topic",
-            "description": "Enter what you want to talk about and how many slides you need."
+            "title": "Tell us your topic",
+            "description": "Type what you want to talk about and choose how many slides you need."
         },
         "step2": {
-            "title": "AI generates content",
-            "description": "Claude AI creates titles, text, and structure automatically."
+            "title": "AI does the heavy lifting",
+            "description": "Claude AI generates titles, body copy, and structure—all done automatically."
         },
         "step3": {
-            "title": "Customize and download",
-            "description": "Choose your favorite template, customize colors, and download."
+            "title": "Customize & download",
+            "description": "Pick your favorite template, tweak the colors, and hit download. That's it."
         }
     },
     "pricing": {
-        "title": "Simple and Clear Plans",
-        "subtitle": "Choose the plan that best fits your needs",
+        "title": "Simple, Transparent Pricing",
+        "subtitle": "Choose the plan that fits your content schedule",
         "monthly": "/ month",
         "startFree": "Start Free",
         "upgradeToPro": "Upgrade to Pro",
-        "recommended": "Recommended",
-        "limitNote": "Limits reset every month",
+        "recommended": "Most Popular",
+        "limitNote": "Limits reset on the 1st of each month",
         "free": {
             "name": "Free",
             "price": "$0",
-            "description": "Perfect to try it out",
+            "description": "Perfect to test it out",
             "feature1": "3 carousels per month",
-            "feature2": "All templates",
+            "feature2": "All templates included",
             "feature3": "Brand customization",
             "feature4": "PNG export"
         },
@@ -77,14 +79,14 @@
             "price": "$5.99",
             "description": "For active creators",
             "feature1": "30 carousels per month",
-            "feature2": "All templates",
+            "feature2": "All templates included",
             "feature3": "Brand customization",
             "feature4": "PNG export",
             "feature5": "Priority support"
         }
     },
     "cta": {
-        "title": "Ready to create amazing content?",
+        "title": "Ready to level up your content?",
         "subtitle": "Join thousands of creators already using Simply Carousel",
         "button": "Start Free Now",
         "learnMore": "Learn More"
@@ -104,7 +106,7 @@
         "title": "Simply Carousel",
         "step": "Step 1: Generate content",
         "prompt": "Carousel topic",
-        "promptPlaceholder": "Ex: 5 digital marketing strategies for entrepreneurs",
+        "promptPlaceholder": "Ex: 5 productivity hacks for remote workers",
         "slideCount": "Number of slides",
         "generate": "Generate Carousel",
         "generating": "Generating...",
@@ -112,9 +114,9 @@
         "limitReached": "Limit reached.",
         "upgradeToPro": "Upgrade to Pro",
         "createMore": "to create up to 30/month",
-        "limitResets": "Resets on the 1st of the month.",
+        "limitResets": "Resets on the 1st.",
         "onlyRemaining": "Only",
-        "carousels": "carousels remaining."
+        "carousels": "left this month."
     },
     "editor": {
         "title": "Edit your carousel",
@@ -131,7 +133,7 @@
         "title": "Download Carousel",
         "slides": "slides",
         "downloadZip": "Download ZIP",
-        "downloadPngs": "📱 Download Individual PNGs",
+        "downloadPngs": "📱 Download PNGs Individually",
         "exporting": "Exporting...",
         "zipContents": "📦 ZIP Contents",
         "files": "PNG files",
@@ -143,10 +145,10 @@
     },
     "auth": {
         "loginTitle": "Welcome back",
-        "loginSubtitle": "Create stunning Instagram carousels with AI in minutes. Generate professional content effortlessly.",
+        "loginSubtitle": "Create stunning Instagram carousels with AI in minutes. Professional content, zero design skills required.",
         "signInWithGoogle": "Continue with Google",
         "termsPrefix": "By continuing, you agree to our",
-        "termsLink": "Terms and Conditions",
+        "termsLink": "Terms & Conditions",
         "and": "and",
         "privacyLink": "Privacy Policy"
     }
