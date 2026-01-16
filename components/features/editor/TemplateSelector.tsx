@@ -1,85 +1,62 @@
 'use client';
 
-import { templates } from '@/templates';
+import { TEMPLATES } from '@/lib/templates';
 import { useCarouselStore } from '@/store/useCarouselStore';
-import type { Template } from '@/types';
 
 /**
- * Selector de templates
- * Muestra grid de templates disponibles y permite seleccionar
+ * Selector de templates en lista scrolleable compacta
  */
 export default function TemplateSelector() {
     const templateId = useCarouselStore((state) => state.templateId);
-    const setTemplate = useCarouselStore((state) => state.setTemplate);
+    const setTemplateId = useCarouselStore((state) => state.setTemplateId);
 
     return (
-        <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-3">
+        <div className="h-64 overflow-y-auto border-b border-gray-200 p-4 bg-white">
+            <h3 className="text-xs font-semibold text-gray-700 mb-3 uppercase tracking-wide">
                 Plantilla
-            </label>
+            </h3>
 
             <div className="grid grid-cols-3 gap-2">
-                {templates.map((template: Template) => (
+                {TEMPLATES.map((template) => (
                     <button
                         key={template.id}
-                        onClick={() => setTemplate(template.id)}
+                        onClick={() => setTemplateId(template.id)}
                         className={`
-              relative p-3 rounded-lg border-2 transition-all
-              ${templateId === template.id
-                                ? 'border-blue-600 bg-blue-50'
-                                : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50'
+                            relative aspect-[4/5] rounded-lg border-2 transition-all overflow-hidden
+                            ${templateId === template.id
+                                ? 'border-blue-500 ring-2 ring-blue-200'
+                                : 'border-gray-200 hover:border-gray-300'
                             }
-            `}
+                        `}
                     >
-                        {/* Template preview placeholder */}
+                        {/* Thumbnail preview */}
                         <div
-                            className={`
-                w-full aspect-[4/5] rounded mb-2 flex items-center justify-center text-xs font-bold
-                ${template.metadata.category === 'minimal'
-                                    ? 'bg-gray-100 text-gray-600'
-                                    : template.metadata.category === 'bold'
-                                        ? 'bg-purple-100 text-purple-600'
-                                        : 'bg-blue-100 text-blue-600'
-                                }
-              `}
+                            className="w-full h-full flex items-center justify-center text-xs font-bold bg-gradient-to-br"
+                            style={{
+                                background: `linear-gradient(135deg, ${template.colors.primary}20, ${template.colors.secondary}20)`,
+                            }}
                         >
-                            {template.metadata.category.charAt(0).toUpperCase()}
+                            <span className="opacity-50">{template.name.charAt(0)}</span>
                         </div>
 
-                        {/* Template name */}
-                        <div className="text-xs font-medium text-gray-700 text-center truncate">
-                            {template.metadata.name}
-                        </div>
-
-                        {/* Active indicator */}
+                        {/* Selected indicator */}
                         {templateId === template.id && (
-                            <div className="absolute top-1 right-1 w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
-                                <svg
-                                    className="w-3 h-3 text-white"
-                                    fill="none"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path d="M5 13l4 4L19 7"></path>
+                            <div className="absolute top-1 right-1 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                 </svg>
                             </div>
                         )}
+
+                        {/* Template name */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-1">
+                            <p className="text-[10px] text-white font-medium truncate">
+                                {template.name}
+                            </p>
+                        </div>
                     </button>
                 ))}
             </div>
-
-            {/* Category badge */}
-            {templateId && (
-                <div className="mt-3 text-xs text-gray-500">
-                    <span className="inline-flex items-center gap-1">
-                        <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
-                        {templates.find((t) => t.id === templateId)?.metadata.category}
-                    </span>
-                </div>
-            )}
         </div>
     );
 }

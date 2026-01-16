@@ -6,6 +6,9 @@ import { useCarouselStore } from '@/store/useCarouselStore';
 import SlideList from '@/components/features/editor/SlideList';
 import CanvasPreview from '@/components/features/editor/CanvasPreview';
 import DesignPanel from '@/components/features/editor/DesignPanel';
+import SlideTextEditor from '@/components/features/editor/SlideTextEditor';
+import TemplateSelector from '@/components/features/editor/TemplateSelector';
+import CompactBrandKit from '@/components/features/editor/CompactBrandKit';
 import UserAvatar from '@/components/UserAvatar';
 import InactivityLogout from '@/components/InactivityLogout';
 import { useBrandKitSync } from '@/hooks/useBrandKitSync';
@@ -16,6 +19,10 @@ import Logo from '@/components/ui/Logo';
  * Ruta: /editor
  * 
  * Desktop (>= 768px): Layout de 3 columnas
+ * - Izquierda: Editor de texto del slide
+ * - Centro: Canvas Preview (grande)
+ * - Derecha: Templates (scroll) + Brand Kit (compacto)
+ * 
  * Mobile (< 768px): Canvas + Tabs (Slides/Design)
  */
 export default function EditorPage() {
@@ -47,9 +54,11 @@ export default function EditorPage() {
                 {/* Header */}
                 <header className="h-16 border-b border-gray-200 flex items-center justify-between px-4 md:px-6 flex-shrink-0">
                     {/* Logo/Title */}
-                    <div className="flex items-center gap-2">
-                        <Logo size={28} />
-                        <p className="text-xs text-gray-500 hidden sm:block mt-1">Paso 2: Edita tu carrusel</p>
+                    <div>
+                        <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            Simply Carousel
+                        </h1>
+                        <p className="text-xs text-gray-500 hidden sm:block">Paso 2: Edita tu carrusel</p>
                     </div>
 
                     {/* Right side: Avatar + Action buttons */}
@@ -77,23 +86,27 @@ export default function EditorPage() {
                     </div>
                 </header>
 
-                {/* Main content - Desktop: 3 columns | Mobile: Stack */}
+                {/* Main content - NUEVO LAYOUT */}
                 <div className="flex-1 flex overflow-hidden">
                     {/* DESKTOP LAYOUT (>= 768px) - 3 columnas */}
                     <div className="hidden md:flex flex-1">
-                        {/* Left column: Slide thumbnails */}
-                        <div className="w-64 flex-shrink-0">
-                            <SlideList />
+                        {/* Left column: Slide Text Editor */}
+                        <div className="w-80 flex-shrink-0">
+                            <SlideTextEditor />
                         </div>
 
-                        {/* Center column: Canvas preview */}
+                        {/* Center column: Canvas preview (GRANDE) */}
                         <div className="flex-1">
                             <CanvasPreview />
                         </div>
 
-                        {/* Right column: Design panel */}
-                        <div className="w-96 flex-shrink-0">
-                            <DesignPanel />
+                        {/* Right column: Templates + Brand Kit */}
+                        <div className="w-80 flex-shrink-0 flex flex-col border-l border-gray-200">
+                            {/* Templates - scrolleable */}
+                            <TemplateSelector />
+
+                            {/* Brand Kit - compacto */}
+                            <CompactBrandKit />
                         </div>
                     </div>
 
@@ -110,8 +123,8 @@ export default function EditorPage() {
                                 <button
                                     onClick={() => setActiveTab('slides')}
                                     className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === 'slides'
-                                        ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
-                                        : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+                                            ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                                            : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
                                         }`}
                                 >
                                     Slides
@@ -119,38 +132,22 @@ export default function EditorPage() {
                                 <button
                                     onClick={() => setActiveTab('design')}
                                     className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === 'design'
-                                        ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
-                                        : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+                                            ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                                            : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
                                         }`}
                                 >
                                     Diseño
                                 </button>
                             </div>
 
-                            {/* Tab content - bottom half */}
-                            <div className="h-80 overflow-y-auto">
-                                {activeTab === 'slides' ? (
-                                    <div className="h-full">
-                                        <SlideList />
-                                    </div>
-                                ) : (
-                                    <div className="h-full">
-                                        <DesignPanel />
-                                    </div>
-                                )}
+                            {/* Tab content */}
+                            <div className="h-64 overflow-y-auto">
+                                {activeTab === 'slides' && <SlideList />}
+                                {activeTab === 'design' && <DesignPanel />}
                             </div>
                         </div>
                     </div>
                 </div>
-
-                {/* Footer indicator */}
-                <footer className="h-12 border-t border-gray-200 flex items-center justify-center flex-shrink-0">
-                    <div className="flex items-center gap-2">
-                        <div className="h-2 w-2 rounded-full bg-gray-200"></div>
-                        <div className="h-2 w-2 rounded-full bg-blue-600"></div>
-                        <div className="h-2 w-2 rounded-full bg-gray-200"></div>
-                    </div>
-                </footer>
             </div>
         </>
     );
