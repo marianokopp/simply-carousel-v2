@@ -33,10 +33,10 @@ export const useCarouselStore = create<CarouselState>((set) => ({
             brandKit: { ...state.brandKit, ...brandKitPartial },
         })),
 
-    updateSlideContent: (index: number, content: SlideContent['content']) =>
+    updateSlideContent: (index: number, updatedSlide: Partial<SlideContent>) =>
         set((state) => ({
             slides: state.slides.map((slide, i) =>
-                i === index ? { ...slide, content } : slide
+                i === index ? { ...slide, ...updatedSlide } : slide
             ),
         })),
 
