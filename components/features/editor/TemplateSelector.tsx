@@ -1,6 +1,6 @@
 'use client';
 
-import { TEMPLATES } from '@/lib/templates';
+import { templates } from '@/templates';
 import { useCarouselStore } from '@/store/useCarouselStore';
 
 /**
@@ -8,7 +8,7 @@ import { useCarouselStore } from '@/store/useCarouselStore';
  */
 export default function TemplateSelector() {
     const templateId = useCarouselStore((state) => state.templateId);
-    const setTemplateId = useCarouselStore((state) => state.setTemplateId);
+    const setTemplate = useCarouselStore((state) => state.setTemplate);
 
     return (
         <div className="h-64 overflow-y-auto border-b border-gray-200 p-4 bg-white">
@@ -17,10 +17,10 @@ export default function TemplateSelector() {
             </h3>
 
             <div className="grid grid-cols-3 gap-2">
-                {TEMPLATES.map((template) => (
+                {templates.map((template) => (
                     <button
                         key={template.id}
-                        onClick={() => setTemplateId(template.id)}
+                        onClick={() => setTemplate(template.id)}
                         className={`
                             relative aspect-[4/5] rounded-lg border-2 transition-all overflow-hidden
                             ${templateId === template.id
@@ -31,12 +31,9 @@ export default function TemplateSelector() {
                     >
                         {/* Thumbnail preview */}
                         <div
-                            className="w-full h-full flex items-center justify-center text-xs font-bold bg-gradient-to-br"
-                            style={{
-                                background: `linear-gradient(135deg, ${template.colors.primary}20, ${template.colors.secondary}20)`,
-                            }}
+                            className="w-full h-full flex items-center justify-center text-xs font-bold bg-gray-100"
                         >
-                            <span className="opacity-50">{template.name.charAt(0)}</span>
+                            <span className="opacity-50">{template.metadata.name.charAt(0).toUpperCase()}</span>
                         </div>
 
                         {/* Selected indicator */}
@@ -51,7 +48,7 @@ export default function TemplateSelector() {
                         {/* Template name */}
                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-1">
                             <p className="text-[10px] text-white font-medium truncate">
-                                {template.name}
+                                {template.metadata.name}
                             </p>
                         </div>
                     </button>
