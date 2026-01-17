@@ -151,10 +151,16 @@
     "preview": {
         "step": "Step 3: Download your carousel",
         "title": "Download Carousel",
+        "heroTitle": "Your carousel is ready! 🎉",
+        "heroSubtitle": "slides ready to download",
+        "renderingSlides": "Rendering your slides...",
+        "scrollHint": "← Swipe to see all slides →",
         "slides": "slides",
         "downloadZip": "Download ZIP",
         "downloadPngs": "📱 Download PNGs Individually",
         "exporting": "Exporting...",
+        "exportError": "Error exporting carousel. Please try again.",
+        "exportPngsError": "Error exporting images. Please try again.",
         "zipContents": "📦 ZIP Contents",
         "files": "PNG files",
         "resolution": "Resolution: 1080x1350px",
@@ -162,6 +168,11 @@
         "readyForInstagram": "Ready to upload to Instagram",
         "editCarousel": "← Edit Carousel",
         "createAnother": "Create Another Carousel"
+    },
+    "user": {
+        "activeAccount": "Active account",
+        "logout": "Log Out",
+        "loggingOut": "Logging out..."
     },
     "auth": {
         "loginTitle": "Welcome back",

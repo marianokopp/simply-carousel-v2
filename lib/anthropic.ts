@@ -43,56 +43,61 @@ async function generateContent(
     // Calcular cantidad de slides body (sin contar hook y cta)
     const bodySlideCount = slideCount - 2;
 
-    const systemPrompt = `Eres un experto en crear carruseles de Instagram altamente efectivos y virales.
-Tu trabajo es generar el contenido para un carrusel de ${slideCount} slides sobre el tema que te proporcionen.
+    const systemPrompt = `You are an expert at creating highly effective and viral Instagram carousels.
+Your job is to generate content for a ${slideCount} slide carousel about the topic provided.
 
-REGLAS ESTRICTAS:
-1. El primer slide (hook) debe captar la atención inmediatamente
-2. Los slides intermedios (body) deben desarrollar el tema con puntos específicos
-3. El último slide (cta) debe tener una llamada a la acción clara
-4. Usa texto corto y directo - máximo 2-3 líneas por slide
-5. **USA ÉNFASIS** con **palabra clave** para resaltar los conceptos más importantes (2-3 palabras por slide)
-6. El hook puede tener un label opcional (categoría en MAYÚSCULAS, ej: "MARKETING", "PRODUCTIVIDAD")
-7. Cada body slide debe tener un título corto (3-5 palabras) y contenido con **énfasis**
-8. El CTA debe motivar a la acción (seguir, compartir, comentar, guardar)
+STRICT RULES:
+1. The first slide (hook) must immediately capture attention
+2. The middle slides (body) must develop the topic with specific points
+3. The last slide (cta) must have a clear call to action
+4. Use short and direct text - maximum 2-3 lines per slide
+5. **USE EMPHASIS** with **keyword** to highlight the most important concepts (2-3 words per slide)
+6. The hook can have an optional label (category in UPPERCASE, e.g., "MARKETING", "PRODUCTIVITY")
+7. Each body slide must have a short title (3-5 words) and content with **emphasis**
+8. The CTA should motivate action (follow, share, comment, save)
 
-FORMATO TONAL:
-- Conversacional pero profesional
-- Usa "tú" para conectar con la audiencia
-- Evita jerga técnica innecesaria
+TONAL FORMAT:
+- Conversational but professional
+- Use "you" to connect with the audience
+- Avoid unnecessary technical jargon
 
-PALABRAS CLAVE DE IMPACTO: transformar, potenciar, escalar, dominar, revolucionar, desbloquear, hack, secreto, estrategia
+IMPACT KEYWORDS: transform, empower, scale, master, revolutionize, unlock, hack, secret, strategy
 
-RESPONDE EXCLUSIVAMENTE EN ESPAÑOL LATINOAMERICANO NEUTRO.
+LANGUAGE RULE: 
+- **RESPOND IN THE SAME LANGUAGE AS THE USER'S PROMPT**
+- If the user writes in Spanish, respond in neutral Latin American Spanish
+- If the user writes in English, respond in English
+- If the user writes in any other language, respond in that same language
 
-IMPORTANTE: 
-- Usa **énfasis** en las palabras MÁS IMPORTANTES de cada slide
-- Cada slide body debe ser autocontenido y entendible sin contexto previo
-- El título del body debe ser conciso (ej: "Define tu audiencia", "Crea contenido valioso")
+IMPORTANT:
+- Use **emphasis** on the MOST IMPORTANT words of each slide
+- Each body slide must be self-contained and understandable without prior context
+- The body title should be concise (e.g., "Define your audience", "Create valuable content")
 
-RESPONDE ÚNICAMENTE CON UN JSON VÁLIDO con esta estructura exacta:
+RESPOND ONLY WITH A VALID JSON with this exact structure:
 {
   "hook": {
-    "label": "CATEGORÍA OPCIONAL EN MAYÚSCULAS",
-    "title": "Título impactante con **énfasis** en palabras clave"
+    "label": "OPTIONAL UPPERCASE CATEGORY",
+    "title": "Impactful title with **emphasis** on keywords"
   },
   "body": [
     {
-      "title": "Título corto del punto",
-      "content": "Contenido breve con **énfasis** en conceptos importantes"
+      "title": "Short point title",
+      "content": "Brief content with **emphasis** on important concepts"
     }
-    // ... ${bodySlideCount} puntos en total
+    // ... ${bodySlideCount} points total
   ],
   "cta": {
-    "title": "Título del llamado a la acción",
-    "action": "Texto específico de acción (ej: Sígueme para más, Comparte si te sirvió)"
+    "title": "Call to action title",
+    "action": "Specific action text (e.g., Follow for more, Share if helpful)"
   }
 }`;
 
-    const userPrompt = `Tema: ${prompt}
+    const userPrompt = `Topic: ${prompt}
 
-Genera contenido relevante y valioso para la audiencia interesada en este tema.
-Adapta el tono y estilo según corresponda al tema proporcionado.`;
+Generate relevant and valuable content for the audience interested in this topic.
+Adapt the tone and style according to the topic provided.
+REMEMBER: Respond in the SAME LANGUAGE as this prompt.`;
 
     try {
         // Llamar a Claude API

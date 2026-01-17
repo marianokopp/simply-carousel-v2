@@ -4,13 +4,15 @@ import { useEffect, useState } from 'react';
 import { useCarouselStore } from '@/store/useCarouselStore';
 import { getTemplateById } from '@/templates';
 import { renderSlideToCanvas } from '@/lib/canvas/renderer';
-import type { SlideContent } from '@/types';
+import { useTranslations } from '@/lib/useTranslations';
 
 /**
  * Galería horizontal scrollable de slides
  * Muestra todos los slides renderizados como imágenes
  */
 export default function SlideGallery() {
+    const t = useTranslations('preview');
+
     const slides = useCarouselStore((state) => state.slides);
     const templateId = useCarouselStore((state) => state.templateId);
     const brandKit = useCarouselStore((state) => state.brandKit);
@@ -57,7 +59,7 @@ export default function SlideGallery() {
             <div className="flex items-center justify-center h-full">
                 <div className="text-center">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                    <p className="text-gray-600">Renderizando tus slides...</p>
+                    <p className="text-gray-600">{t('renderingSlides')}</p>
                 </div>
             </div>
         );
@@ -68,10 +70,10 @@ export default function SlideGallery() {
             {/* Title */}
             <div className="p-6 border-b border-gray-200">
                 <h2 className="text-2xl font-bold text-gray-900">
-                    ¡Tu carrusel está listo! 🎉
+                    {t('heroTitle')}
                 </h2>
                 <p className="text-gray-600 mt-1">
-                    {slideImages.length} slides listos para descargar
+                    {slideImages.length} {t('heroSubtitle')}
                 </p>
             </div>
 
@@ -112,7 +114,7 @@ export default function SlideGallery() {
             {/* Scroll hint */}
             <div className="p-4 text-center border-t border-gray-200">
                 <p className="text-sm text-gray-500">
-                    ← Desliza para ver todos los slides →
+                    {t('scrollHint')}
                 </p>
             </div>
         </div>

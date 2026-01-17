@@ -151,10 +151,16 @@
     "preview": {
         "step": "Paso 3: Descarga tu carrusel",
         "title": "Descargar Carrusel",
+        "heroTitle": "¡Tu carrusel está listo! 🎉",
+        "heroSubtitle": "slides listos para descargar",
+        "renderingSlides": "Renderizando tus slides...",
+        "scrollHint": "← Desliza para ver todos los slides →",
         "slides": "slides",
         "downloadZip": "Descargar ZIP",
         "downloadPngs": "📱 Descargar PNGs Individuales",
         "exporting": "Exportando...",
+        "exportError": "Error al exportar el carrusel. Intenta nuevamente.",
+        "exportPngsError": "Error al exportar las imágenes. Intenta nuevamente.",
         "zipContents": "📦 Contenido del ZIP",
         "files": "archivos PNG",
         "resolution": "Resolución: 1080x1350px",
@@ -162,6 +168,11 @@
         "readyForInstagram": "Listos para subir a Instagram",
         "editCarousel": "← Editar Carrusel",
         "createAnother": "Crear Otro Carrusel"
+    },
+    "user": {
+        "activeAccount": "Cuenta activa",
+        "logout": "Cerrar Sesión",
+        "loggingOut": "Cerrando sesión..."
     },
     "auth": {
         "loginTitle": "Bienvenido de vuelta",

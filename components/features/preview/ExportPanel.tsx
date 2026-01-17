@@ -5,12 +5,15 @@ import { useRouter } from 'next/navigation';
 import { useCarouselStore } from '@/store/useCarouselStore';
 import { getTemplateById } from '@/templates';
 import { renderSlideToCanvas } from '@/lib/canvas/renderer';
+import { useTranslations } from '@/lib/useTranslations';
 import JSZip from 'jszip';
 
 /**
  * Panel de exportación con botón de descarga
  */
 export default function ExportPanel() {
+    const t = useTranslations('preview');
+
     const router = useRouter();
     const slides = useCarouselStore((state) => state.slides);
     const templateId = useCarouselStore((state) => state.templateId);
@@ -64,7 +67,6 @@ export default function ExportPanel() {
             });
 
             // Descargar con extensión .zip garantizada
-            // Nombre del archivo con verificación de extensión
             let fileName = 'carousel-instagram.zip';
             if (!fileName.endsWith('.zip')) {
                 fileName += '.zip';
@@ -89,7 +91,7 @@ export default function ExportPanel() {
 
         } catch (error) {
             console.error('Error exporting ZIP:', error);
-            alert('Error al exportar el carrusel. Intenta nuevamente.');
+            alert(t('exportError'));
         } finally {
             setIsExporting(false);
         }
@@ -97,7 +99,6 @@ export default function ExportPanel() {
 
     /**
      * Descarga todas las imágenes PNG individualmente
-     * Útil para móviles donde se guardan directamente en el rollo fotográfico
      */
     const handleDownloadPNGs = async () => {
         setIsExporting(true);
@@ -138,13 +139,13 @@ export default function ExportPanel() {
                 document.body.removeChild(link);
                 URL.revokeObjectURL(url);
 
-                // Pequeño delay entre descargas para evitar bloqueo del navegador
+                // Pequeño delay entre descargas
                 await new Promise(resolve => setTimeout(resolve, 300));
             }
 
         } catch (error) {
             console.error('Error exporting PNGs:', error);
-            alert('Error al exportar las imágenes. Intenta nuevamente.');
+            alert(t('exportPngsError'));
         } finally {
             setIsExporting(false);
         }
@@ -154,9 +155,7 @@ export default function ExportPanel() {
      * Crear nuevo carrusel
      */
     const handleCreateAnother = () => {
-        // Resetear store
         reset();
-        // Ir al generator
         router.push('/generator');
     };
 
@@ -165,10 +164,10 @@ export default function ExportPanel() {
             {/* Header */}
             <div className="p-6 border-b border-gray-200">
                 <h3 className="text-lg font-semibold text-gray-900">
-                    Descargar Carrusel
+                    {t('title')}
                 </h3>
                 <p className="text-sm text-gray-600 mt-1">
-                    {slides.length} slides • 1080x1350px • PNG
+                    {slides.length} {t('slides')} • 1080x1350px • PNG
                 </p>
             </div>
 
@@ -201,7 +200,7 @@ export default function ExportPanel() {
                                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                 />
                             </svg>
-                            Exportando...
+                            {t('exporting')}
                         </span>
                     ) : (
                         <span className="flex items-center justify-center gap-2">
@@ -216,7 +215,7 @@ export default function ExportPanel() {
                             >
                                 <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                             </svg>
-                            Descargar ZIP
+                            {t('downloadZip')}
                         </span>
                     )}
                 </button>
@@ -239,20 +238,20 @@ export default function ExportPanel() {
                         >
                             <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
-                        📱 Descargar PNGs Individuales
+                        {t('downloadPngs')}
                     </span>
                 </button>
 
                 {/* Info box */}
                 <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                     <h4 className="text-sm font-semibold text-blue-900 mb-2">
-                        📦 Contenido del ZIP
+                        {t('zipContents')}
                     </h4>
                     <ul className="text-xs text-blue-800 space-y-1">
-                        <li>• {slides.length} archivos PNG</li>
-                        <li>• Resolución: 1080x1350px</li>
-                        <li>• Nombres: carousel-slide-01.png, 02...</li>
-                        <li>• Listos para subir a Instagram</li>
+                        <li>• {slides.length} {t('files')}</li>
+                        <li>• {t('resolution')}</li>
+                        <li>• {t('naming')}</li>
+                        <li>• {t('readyForInstagram')}</li>
                     </ul>
                 </div>
 
@@ -265,14 +264,14 @@ export default function ExportPanel() {
                         onClick={() => router.push('/editor')}
                         className="w-full px-4 py-3 bg-white border-2 border-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-50 hover:border-gray-300 transition-all"
                     >
-                        ← Editar Carrusel
+                        {t('editCarousel')}
                     </button>
 
                     <button
                         onClick={handleCreateAnother}
                         className="w-full px-4 py-3 bg-white border-2 border-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-50 hover:border-gray-300 transition-all"
                     >
-                        Crear Otro Carrusel
+                        {t('createAnother')}
                     </button>
                 </div>
             </div>
