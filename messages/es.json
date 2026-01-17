@@ -165,11 +165,27 @@
     },
     "auth": {
         "loginTitle": "Bienvenido de vuelta",
-        "loginSubtitle": "Crea carruseles impactantes para Instagram con IA en minutos. Genera contenido profesional sin esfuerzo.",
+        "signupTitle": "Crear cuenta",
+        "loginSubtitle": "Inicia sesión para continuar",
+        "signupSubtitle": "Crea carruseles increíbles con IA",
         "signInWithGoogle": "Continuar con Google",
+        "orContinueWithEmail": "O continúa con email",
+        "email": "Email",
+        "emailPlaceholder": "tu@email.com",
+        "password": "Contraseña",
+        "passwordPlaceholder": "••••••••",
+        "signIn": "Iniciar sesión",
+        "signUp": "Crear cuenta",
+        "processing": "Procesando...",
+        "noAccount": "¿No tienes cuenta? Regístrate",
+        "hasAccount": "¿Ya tienes cuenta? Inicia sesión",
+        "accountCreated": "¡Cuenta creada! Revisa tu email para verificar tu cuenta.",
+        "errorGeneric": "Ocurrió un error. Intenta nuevamente.",
+        "errorGoogle": "Error al iniciar sesión con Google.",
         "termsPrefix": "Al continuar, aceptas nuestros",
         "termsLink": "Términos y Condiciones",
         "and": "y",
-        "privacyLink": "Política de Privacidad"
+        "privacyLink": "Política de Privacidad",
+        "tagline": "Crea carruseles increíbles con IA"
     }
 }

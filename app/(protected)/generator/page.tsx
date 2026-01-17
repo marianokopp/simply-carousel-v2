@@ -4,6 +4,7 @@ import GeneratorForm from '@/components/features/generator/GeneratorForm';
 import CarouselCounter from '@/components/CarouselCounter';
 import UserAvatar from '@/components/UserAvatar';
 import InactivityLogout from '@/components/InactivityLogout';
+import LanguageSwitch from '@/components/LanguageSwitch';
 import { useTranslations } from '@/lib/useTranslations';
 
 /**
@@ -30,12 +31,13 @@ export default function GeneratorPage() {
                             {tCommon('appName')}
                         </h2>
 
-                        {/* Avatar + Counter derecha */}
+                        {/* Avatar + Counter + Language derecha */}
                         <div className="flex items-center gap-3">
                             {/* Contador compacto */}
                             <div className="max-w-[200px]">
                                 <CarouselCounter />
                             </div>
+                            <LanguageSwitch />
                             <UserAvatar />
                         </div>
                     </div>

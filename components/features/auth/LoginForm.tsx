@@ -3,12 +3,15 @@
 import { useState } from 'react';
 import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from '@/lib/useTranslations';
 
 /**
  * Componente de formulario de login con Supabase Auth
  * Soporta login con email/password y Google OAuth
  */
 export default function LoginForm() {
+    const t = useTranslations('auth');
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +46,7 @@ export default function LoginForm() {
                 if (error) throw error;
 
                 // Mostrar mensaje de verificación de email
-                setError('¡Cuenta creada! Revisa tu email para verificar tu cuenta.');
+                setError(t('accountCreated'));
             } else {
                 // Login de usuario existente
                 const { error } = await supabase.auth.signInWithPassword({
@@ -58,7 +61,7 @@ export default function LoginForm() {
                 router.refresh();
             }
         } catch (err: any) {
-            setError(err.message || 'Ocurrió un error. Intenta nuevamente.');
+            setError(err.message || t('errorGeneric'));
         } finally {
             setIsLoading(false);
         }
@@ -81,7 +84,7 @@ export default function LoginForm() {
 
             if (error) throw error;
         } catch (err: any) {
-            setError(err.message || 'Error al iniciar sesión con Google.');
+            setError(err.message || t('errorGoogle'));
             setIsLoading(false);
         }
     };
@@ -92,18 +95,16 @@ export default function LoginForm() {
                 {/* Header */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                        {isSignUp ? 'Crear cuenta' : 'Bienvenido de vuelta'}
+                        {isSignUp ? t('signupTitle') : t('loginTitle')}
                     </h1>
                     <p className="text-gray-600">
-                        {isSignUp
-                            ? 'Crea carruseles increíbles con IA'
-                            : 'Inicia sesión para continuar'}
+                        {isSignUp ? t('signupSubtitle') : t('loginSubtitle')}
                     </p>
                 </div>
 
                 {/* Error message */}
                 {error && (
-                    <div className={`mb-6 p-4 rounded-lg ${error.includes('creada')
+                    <div className={`mb-6 p-4 rounded-lg ${error.includes('creada') || error.includes('created')
                         ? 'bg-green-50 text-green-800 border border-green-200'
                         : 'bg-red-50 text-red-800 border border-red-200'
                         }`}>
@@ -135,7 +136,7 @@ export default function LoginForm() {
                             d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                         />
                     </svg>
-                    Continuar con Google
+                    {t('signInWithGoogle')}
                 </button>
 
                 {/* Divider */}
@@ -144,7 +145,7 @@ export default function LoginForm() {
                         <div className="w-full border-t border-gray-200"></div>
                     </div>
                     <div className="relative flex justify-center text-sm">
-                        <span className="px-4 bg-white text-gray-500">O continúa con email</span>
+                        <span className="px-4 bg-white text-gray-500">{t('orContinueWithEmail')}</span>
                     </div>
                 </div>
 
@@ -152,7 +153,7 @@ export default function LoginForm() {
                 <form onSubmit={handleEmailAuth} className="space-y-4">
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                            Email
+                            {t('email')}
                         </label>
                         <input
                             id="email"
@@ -161,14 +162,14 @@ export default function LoginForm() {
                             onChange={(e) => setEmail(e.target.value)}
                             required
                             className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                            placeholder="tu@email.com"
+                            placeholder={t('emailPlaceholder')}
                             disabled={isLoading}
                         />
                     </div>
 
                     <div>
                         <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                            Contraseña
+                            {t('password')}
                         </label>
                         <input
                             id="password"
@@ -178,7 +179,7 @@ export default function LoginForm() {
                             required
                             minLength={6}
                             className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                            placeholder="••••••••"
+                            placeholder={t('passwordPlaceholder')}
                             disabled={isLoading}
                         />
                     </div>
@@ -206,10 +207,10 @@ export default function LoginForm() {
                                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                     />
                                 </svg>
-                                Procesando...
+                                {t('processing')}
                             </span>
                         ) : (
-                            isSignUp ? 'Crear cuenta' : 'Iniciar sesión'
+                            isSignUp ? t('signUp') : t('signIn')
                         )}
                     </button>
                 </form>
@@ -223,9 +224,7 @@ export default function LoginForm() {
                         }}
                         className="text-sm text-blue-600 hover:text-blue-700 font-medium"
                     >
-                        {isSignUp
-                            ? '¿Ya tienes cuenta? Inicia sesión'
-                            : '¿No tienes cuenta? Regístrate'}
+                        {isSignUp ? t('hasAccount') : t('noAccount')}
                     </button>
                 </div>
             </div>

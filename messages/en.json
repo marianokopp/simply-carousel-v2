@@ -165,11 +165,27 @@
     },
     "auth": {
         "loginTitle": "Welcome back",
-        "loginSubtitle": "Create stunning Instagram carousels with AI in minutes. Professional content, zero design skills required.",
+        "signupTitle": "Create account",
+        "loginSubtitle": "Sign in to continue",
+        "signupSubtitle": "Create amazing carousels with AI",
         "signInWithGoogle": "Continue with Google",
+        "orContinueWithEmail": "Or continue with email",
+        "email": "Email",
+        "emailPlaceholder": "you@email.com",
+        "password": "Password",
+        "passwordPlaceholder": "••••••••",
+        "signIn": "Sign in",
+        "signUp": "Create account",
+        "processing": "Processing...",
+        "noAccount": "Don't have an account? Sign up",
+        "hasAccount": "Already have an account? Sign in",
+        "accountCreated": "Account created! Check your email to verify your account.",
+        "errorGeneric": "An error occurred. Please try again.",
+        "errorGoogle": "Error signing in with Google.",
         "termsPrefix": "By continuing, you agree to our",
         "termsLink": "Terms & Conditions",
         "and": "and",
-        "privacyLink": "Privacy Policy"
+        "privacyLink": "Privacy Policy",
+        "tagline": "Create amazing carousels with AI"
     }
 }
