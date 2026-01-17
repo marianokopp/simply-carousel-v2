@@ -91,7 +91,7 @@ export default function EditorPage() {
                     {/* DESKTOP LAYOUT (>= 768px) - 3 columnas */}
                     <div className="hidden md:flex flex-1">
                         {/* Left column: Slide Text Editor */}
-                        <div className="w-80 flex-shrink-0">
+                        <div className="w-96 flex-shrink-0">
                             <SlideTextEditor />
                         </div>
 
@@ -101,7 +101,7 @@ export default function EditorPage() {
                         </div>
 
                         {/* Right column: Templates + Brand Kit */}
-                        <div className="w-80 flex-shrink-0 flex flex-col border-l border-gray-200">
+                        <div className="w-96 flex-shrink-0 flex flex-col border-l border-gray-200">
                             {/* Templates - scrolleable */}
                             <TemplateSelector />
 

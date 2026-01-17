@@ -36,7 +36,7 @@ export default function GeneratorPage() {
                 </div>
 
                 {/* Título centrado más cerca del cuadro */}
-                <div className="max-w-3xl mx-auto mb-8">
+                <div className="max-w-3xl mx-auto mb-16">
                     <div className="text-center">
                         <p className="text-gray-600 text-lg">Paso 1: Genera contenido con IA</p>
                     </div>

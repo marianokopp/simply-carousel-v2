@@ -16,7 +16,7 @@ export default function TemplateSelector() {
                 Plantilla
             </h3>
 
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-4 gap-1.5">
                 {templates.map((template) => (
                     <button
                         key={template.id}
