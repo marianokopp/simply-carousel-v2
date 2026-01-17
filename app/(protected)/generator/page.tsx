@@ -25,7 +25,7 @@ export default function GeneratorPage() {
                         </h2>
 
                         {/* Avatar + Counter derecha */}
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-6">
                             {/* Contador compacto */}
                             <div className="max-w-[200px]">
                                 <CarouselCounter />
@@ -38,7 +38,7 @@ export default function GeneratorPage() {
                 {/* Título centrado más cerca del cuadro */}
                 <div className="max-w-3xl mx-auto mb-16">
                     <div className="text-center">
-                        <p className="text-gray-600 text-lg">Paso 1: Genera contenido con IA</p>
+                        <p className="text-gray-600 text-lg">Paso 1</p>
                     </div>
                 </div>
 
