@@ -57,7 +57,7 @@ export default function CarouselCounter() {
                 <span className="text-gray-600 dark:text-gray-400">
                     Carruseles este mes
                 </span>
-                <span className={`font-semibold ${remaining === 0 ? 'text-red-600' :
+                <span className={`font-semibold pl-2 ${remaining === 0 ? 'text-red-600' :
                     remaining <= 2 ? 'text-yellow-600' :
                         'text-gray-900 dark:text-white'
                     }`}>

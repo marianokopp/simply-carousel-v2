@@ -17,7 +17,7 @@ export default function GeneratorPage() {
 
             <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-8 px-4">
                 {/* Header: Logo + Avatar + Counter en la misma línea */}
-                <div className="max-w-3xl mx-auto mb-4">
+                <div className="max-w-3xl mx-auto mb-8">
                     <div className="flex items-center justify-between">
                         {/* Logo izquierda */}
                         <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -25,7 +25,7 @@ export default function GeneratorPage() {
                         </h2>
 
                         {/* Avatar + Counter derecha */}
-                        <div className="flex items-center gap-6">
+                        <div className="flex items-center gap-3">
                             {/* Contador compacto */}
                             <div className="max-w-[200px]">
                                 <CarouselCounter />
@@ -38,7 +38,7 @@ export default function GeneratorPage() {
                 {/* Título centrado más cerca del cuadro */}
                 <div className="max-w-3xl mx-auto mb-16">
                     <div className="text-center">
-                        <p className="text-gray-600 text-lg">Paso 1</p>
+                        <p className="text-gray-600 text-lg">Paso 1: Genera contenido con IA</p>
                     </div>
                 </div>
 
@@ -53,7 +53,7 @@ export default function GeneratorPage() {
                         <div className="h-2 w-2 rounded-full bg-gray-200"></div>
                     </div>
                     <p className="text-center text-sm text-gray-500 mt-3">
-                        Paso 1 de 3: Generación
+                        Paso 1: Genera contenido con IA de 3: Generación
                     </p>
                 </div>
             </div>
