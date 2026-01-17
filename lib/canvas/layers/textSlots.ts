@@ -176,15 +176,25 @@ function renderTextWithEmphasis(
         : baseColor;
 
     // Convert segments to words with styles
+    // Preservamos la puntuación pegada a la palabra anterior
     const words: WordWithStyle[] = [];
     segments.forEach((seg: any) => {
-        // Split por espacios (uno o más) y filtrar vacíos
+        // Usamos regex que mantiene la puntuación pegada a las palabras
+        // Ejemplo: "word," -> ["word,"], "word ," -> ["word", ","]
         const segWords = seg.text.split(/\s+/).filter((w: string) => w.length > 0);
         segWords.forEach((word: string) => {
-            words.push({
-                text: word,
-                emphasized: seg.emphasized,
-            });
+            // Detectar si es solo puntuación (comenzar con signo de puntuación y sin letras)
+            const isPunctuationOnly = /^[.,;:!?¿¡)}\]]+$/.test(word);
+
+            if (isPunctuationOnly && words.length > 0) {
+                // Si es solo puntuación, pegarlo a la última palabra
+                words[words.length - 1].text += word;
+            } else {
+                words.push({
+                    text: word,
+                    emphasized: seg.emphasized,
+                });
+            }
         });
     });
 
