@@ -7,15 +7,16 @@ import SlideGallery from '@/components/features/preview/SlideGallery';
 import ExportPanel from '@/components/features/preview/ExportPanel';
 import UserAvatar from '@/components/UserAvatar';
 import InactivityLogout from '@/components/InactivityLogout';
+import { useTranslations } from '@/lib/useTranslations';
 
 /**
  * Página de Preview Final
  * Ruta: /preview
- * 
- * Desktop: Galería + Panel lateral
- * Mobile: Galería + Botón flotante que abre panel
  */
 export default function PreviewPage() {
+    const t = useTranslations('preview');
+    const tCommon = useTranslations('common');
+
     const router = useRouter();
     const slides = useCarouselStore((state) => state.slides);
     const [showExportPanel, setShowExportPanel] = useState(false);
@@ -42,9 +43,9 @@ export default function PreviewPage() {
                     {/* Logo/Title */}
                     <div>
                         <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                            Simply Carousel
+                            {tCommon('appName')}
                         </h1>
-                        <p className="text-xs text-gray-500 hidden sm:block">Paso 3: Preview & Export</p>
+                        <p className="text-xs text-gray-500 hidden sm:block">{t('step')}</p>
                     </div>
 
                     {/* Right side: Avatar + Back button */}
@@ -57,7 +58,7 @@ export default function PreviewPage() {
                             onClick={() => router.push('/editor')}
                             className="hidden md:block px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-all"
                         >
-                            ← Volver al Editor
+                            {t('editCarousel')}
                         </button>
 
                         {/* Back button - mobile (icon only) */}
@@ -109,7 +110,7 @@ export default function PreviewPage() {
                             onClick={() => setShowExportPanel(true)}
                             className="w-full px-6 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold shadow-lg"
                         >
-                            Descargar Carrusel
+                            {t('downloadZip')}
                         </button>
                     </div>
                 </footer>

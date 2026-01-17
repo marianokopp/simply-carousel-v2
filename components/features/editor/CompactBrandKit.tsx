@@ -1,11 +1,14 @@
 'use client';
 
 import { useCarouselStore } from '@/store/useCarouselStore';
+import { useTranslations } from '@/lib/useTranslations';
 
 /**
- * Brand Kit compacto sin título para sidebar derecho  
+ * Brand Kit compacto para sidebar derecho  
  */
 export default function CompactBrandKit() {
+    const t = useTranslations('editor');
+
     const brandKit = useCarouselStore((state) => state.brandKit);
     const setBrandKit = useCarouselStore((state) => state.setBrandKit);
 
@@ -14,7 +17,7 @@ export default function CompactBrandKit() {
             <div className="space-y-4">
                 {/* Author toggle */}
                 <div className="flex items-center justify-between">
-                    <span className="text-xs font-medium text-gray-700">Autor</span>
+                    <span className="text-xs font-medium text-gray-700">{t('author')}</span>
                     <label className="relative inline-flex items-center cursor-pointer">
                         <input
                             type="checkbox"
@@ -33,7 +36,7 @@ export default function CompactBrandKit() {
                             type="text"
                             value={brandKit.author_handle || ''}
                             onChange={(e) => setBrandKit({ author_handle: e.target.value })}
-                            placeholder="@tuusuario"
+                            placeholder="@username"
                             className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
@@ -41,7 +44,7 @@ export default function CompactBrandKit() {
 
                 {/* Website toggle */}
                 <div className="flex items-center justify-between">
-                    <span className="text-xs font-medium text-gray-700">Website</span>
+                    <span className="text-xs font-medium text-gray-700">{t('website')}</span>
                     <label className="relative inline-flex items-center cursor-pointer">
                         <input
                             type="checkbox"
@@ -60,7 +63,7 @@ export default function CompactBrandKit() {
                             type="text"
                             value={brandKit.website || ''}
                             onChange={(e) => setBrandKit({ website: e.target.value })}
-                            placeholder="tuweb.com"
+                            placeholder="yourwebsite.com"
                             className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
@@ -69,12 +72,12 @@ export default function CompactBrandKit() {
                 {/* Colors */}
                 <div>
                     <label className="block text-xs font-medium text-gray-700 mb-2">
-                        Colores
+                        {t('colors')}
                     </label>
                     <div className="grid grid-cols-2 gap-2">
                         {/* Primary color */}
                         <div>
-                            <label className="block text-[10px] text-gray-500 mb-1">Primario</label>
+                            <label className="block text-[10px] text-gray-500 mb-1">{t('primary')}</label>
                             <input
                                 type="color"
                                 value={brandKit.primary_color}
@@ -85,7 +88,7 @@ export default function CompactBrandKit() {
 
                         {/* Secondary color */}
                         <div>
-                            <label className="block text-[10px] text-gray-500 mb-1">Secundario</label>
+                            <label className="block text-[10px] text-gray-500 mb-1">{t('secondary')}</label>
                             <input
                                 type="color"
                                 value={brandKit.secondary_color}

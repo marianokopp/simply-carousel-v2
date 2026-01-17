@@ -1,7 +1,10 @@
+'use client';
+
 import GeneratorForm from '@/components/features/generator/GeneratorForm';
 import CarouselCounter from '@/components/CarouselCounter';
 import UserAvatar from '@/components/UserAvatar';
 import InactivityLogout from '@/components/InactivityLogout';
+import { useTranslations } from '@/lib/useTranslations';
 
 /**
  * Página del generador de carruseles con IA
@@ -10,6 +13,9 @@ import InactivityLogout from '@/components/InactivityLogout';
  * Esta página está protegida por el middleware de autenticación
  */
 export default function GeneratorPage() {
+    const t = useTranslations('generator');
+    const tCommon = useTranslations('common');
+
     return (
         <>
             {/* Auto-logout por inactividad */}
@@ -21,7 +27,7 @@ export default function GeneratorPage() {
                     <div className="flex items-center justify-between">
                         {/* Logo izquierda */}
                         <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                            Simply Carousel
+                            {tCommon('appName')}
                         </h2>
 
                         {/* Avatar + Counter derecha */}
@@ -38,7 +44,7 @@ export default function GeneratorPage() {
                 {/* Título centrado más cerca del cuadro */}
                 <div className="max-w-3xl mx-auto mb-16">
                     <div className="text-center">
-                        <p className="text-gray-600 text-lg">Paso 1: Genera contenido con IA</p>
+                        <p className="text-gray-600 text-lg">{t('step')}</p>
                     </div>
                 </div>
 
@@ -52,9 +58,6 @@ export default function GeneratorPage() {
                         <div className="h-2 w-2 rounded-full bg-gray-200"></div>
                         <div className="h-2 w-2 rounded-full bg-gray-200"></div>
                     </div>
-                    <p className="text-center text-sm text-gray-500 mt-3">
-                        Paso 1: Genera contenido con IA de 3: Generación
-                    </p>
                 </div>
             </div>
         </>

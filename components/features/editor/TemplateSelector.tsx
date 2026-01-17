@@ -2,18 +2,21 @@
 
 import { templates } from '@/templates';
 import { useCarouselStore } from '@/store/useCarouselStore';
+import { useTranslations } from '@/lib/useTranslations';
 
 /**
- * Selector de templates en lista scrolleable compacta
+ * Selector de templates compacto para sidebar
  */
 export default function TemplateSelector() {
+    const t = useTranslations('editor');
+
     const templateId = useCarouselStore((state) => state.templateId);
     const setTemplate = useCarouselStore((state) => state.setTemplate);
 
     return (
         <div className="h-64 overflow-y-auto border-b border-gray-200 p-4 bg-white">
             <h3 className="text-xs font-semibold text-gray-700 mb-3 uppercase tracking-wide">
-                Plantilla
+                {t('template')}
             </h3>
 
             <div className="grid grid-cols-4 gap-1.5">
@@ -21,13 +24,10 @@ export default function TemplateSelector() {
                     <button
                         key={template.id}
                         onClick={() => setTemplate(template.id)}
-                        className={`
-                            relative aspect-[4/5] rounded-lg border-2 transition-all overflow-hidden
-                            ${templateId === template.id
+                        className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${templateId === template.id
                                 ? 'border-blue-500 ring-2 ring-blue-200'
                                 : 'border-gray-200 hover:border-gray-300'
-                            }
-                        `}
+                            }`}
                     >
                         {/* Thumbnail preview */}
                         <div

@@ -1,11 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useTranslations } from '@/lib/useTranslations';
 
 /**
  * Muestra el contador de carruseles disponibles del usuario
  */
 export default function CarouselCounter() {
+    const t = useTranslations('generator');
+    const tCommon = useTranslations('common');
+
     const [loading, setLoading] = useState(true);
     const [count, setCount] = useState(0);
     const [limit, setLimit] = useState(3);
@@ -43,7 +47,7 @@ export default function CarouselCounter() {
     if (loading) {
         return (
             <div className="text-sm text-gray-500">
-                Cargando...
+                {tCommon('loading')}
             </div>
         );
     }
@@ -55,7 +59,7 @@ export default function CarouselCounter() {
         <div className="space-y-2">
             <div className="flex items-center justify-between text-xs">
                 <span className="text-gray-600 dark:text-gray-400">
-                    Carruseles este mes
+                    {t('carouselsRemaining')}
                 </span>
                 <span className={`font-semibold pl-2 ${remaining === 0 ? 'text-red-600' :
                     remaining <= 2 ? 'text-yellow-600' :
@@ -79,23 +83,23 @@ export default function CarouselCounter() {
             {/* Mensaje según estado */}
             {remaining === 0 && plan === 'free' && (
                 <p className="text-xs text-red-600 dark:text-red-400">
-                    Límite alcanzado.{' '}
+                    {t('limitReached')}{' '}
                     <a href="/upgrade" className="underline font-semibold">
-                        Upgrade a Pro
+                        {t('upgradeToPro')}
                     </a>
-                    {' '}para crear hasta 30/mes
+                    {' '}{t('createMore')}
                 </p>
             )}
             {remaining === 0 && plan === 'pro' && (
                 <p className="text-xs text-red-600 dark:text-red-400">
-                    Límite alcanzado. Se reinicia el 1° del mes.
+                    {t('limitReached')} {t('limitResets')}
                 </p>
             )}
             {remaining > 0 && remaining <= 2 && plan === 'free' && (
                 <p className="text-xs text-yellow-600 dark:text-yellow-400">
-                    Quedan solo {remaining} carruseles.{' '}
+                    {t('onlyRemaining')} {remaining} {t('carousels')}{' '}
                     <a href="/upgrade" className="underline">
-                        Upgrade a Pro
+                        {t('upgradeToPro')}
                     </a>
                 </p>
             )}

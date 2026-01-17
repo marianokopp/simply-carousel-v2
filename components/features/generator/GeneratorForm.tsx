@@ -3,11 +3,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCarouselStore } from '@/store/useCarouselStore';
+import { useTranslations } from '@/lib/useTranslations';
 
 /**
  * Componente de formulario para generar carruseles con IA
  */
 export default function GeneratorForm() {
+    const t = useTranslations('generator');
+
     const [prompt, setPrompt] = useState('');
     const [slideCount, setSlideCount] = useState<5 | 7 | 10>(7);
     const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +30,7 @@ export default function GeneratorForm() {
         try {
             // Validar prompt
             if (prompt.trim().length === 0) {
-                throw new Error('Por favor ingresa un tema para tu carrusel');
+                throw new Error(t('errorEmpty'));
             }
 
             // Llamar a la API
@@ -45,7 +48,7 @@ export default function GeneratorForm() {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.error || 'Error al generar el carrusel');
+                throw new Error(data.error || t('errorGeneric'));
             }
 
             // Guardar slides en Zustand
@@ -54,7 +57,7 @@ export default function GeneratorForm() {
             // Redirigir al editor
             router.push('/editor');
         } catch (err: any) {
-            setError(err.message || 'Ocurrió un error. Intenta nuevamente.');
+            setError(err.message || t('errorGeneric'));
             setIsLoading(false);
         }
     };
@@ -71,7 +74,7 @@ export default function GeneratorForm() {
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Prompt textarea - SIN LABEL */}
+                    {/* Prompt textarea */}
                     <div>
                         <textarea
                             id="prompt"
@@ -81,11 +84,11 @@ export default function GeneratorForm() {
                             rows={4}
                             maxLength={500}
                             className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none disabled:bg-gray-50 disabled:cursor-not-allowed"
-                            placeholder="Ej: Los 7 errores más comunes al emprender un negocio online"
+                            placeholder={t('promptPlaceholder')}
                         />
                         <div className="mt-2 flex justify-between items-center">
                             <p className="text-xs text-gray-500">
-                                Sé específico para mejores resultados
+                                {t('promptHint')}
                             </p>
                             <p className="text-xs text-gray-400">
                                 {prompt.length}/500
@@ -93,7 +96,7 @@ export default function GeneratorForm() {
                         </div>
                     </div>
 
-                    {/* Slide count selector - SIN LABEL "Cantidad de slides" */}
+                    {/* Slide count selector */}
                     <div>
                         <div className="grid grid-cols-3 gap-3">
                             {([5, 7, 10] as const).map((count) => (
@@ -111,7 +114,6 @@ export default function GeneratorForm() {
                                 </button>
                             ))}
                         </div>
-                        {/* ELIMINADO: "Incluye slide de hook inicial y CTA final" */}
                     </div>
 
                     {/* Submit button */}
@@ -141,10 +143,10 @@ export default function GeneratorForm() {
                                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                     />
                                 </svg>
-                                Generando tu carrusel...
+                                {t('generating')}
                             </span>
                         ) : (
-                            'Generar con IA ✨'
+                            t('generate')
                         )}
                     </button>
                 </form>
@@ -152,20 +154,20 @@ export default function GeneratorForm() {
                 {/* Tips */}
                 <div className="mt-8 pt-6 border-t border-gray-100">
                     <h3 className="text-sm font-semibold text-gray-700 mb-3">
-                        💡 Tips para mejores resultados
+                        {t('tipsTitle')}
                     </h3>
                     <ul className="space-y-2 text-sm text-gray-600">
                         <li className="flex items-start gap-2">
                             <span className="text-blue-600 mt-0.5">•</span>
-                            <span>Sé específico sobre tu nicho o audiencia</span>
+                            <span>{t('tip1')}</span>
                         </li>
                         <li className="flex items-start gap-2">
                             <span className="text-blue-600 mt-0.5">•</span>
-                            <span>Usa números en tu descripción (Ej: "5 estrategias...")</span>
+                            <span>{t('tip2')}</span>
                         </li>
                         <li className="flex items-start gap-2">
                             <span className="text-blue-600 mt-0.5">•</span>
-                            <span>Menciona el resultado que quieres lograr</span>
+                            <span>{t('tip3')}</span>
                         </li>
                     </ul>
                 </div>

@@ -1,12 +1,15 @@
 'use client';
 
 import { useCarouselStore } from '@/store/useCarouselStore';
+import { useTranslations } from '@/lib/useTranslations';
 
 /**
  * Editor de texto para el slide actual
  * Solo muestra el texto editable del slide seleccionado
  */
 export default function SlideTextEditor() {
+    const t = useTranslations('editor');
+
     const currentSlideIndex = useCarouselStore((state) => state.currentSlideIndex);
     const slides = useCarouselStore((state) => state.slides);
     const updateSlideContent = useCarouselStore((state) => state.updateSlideContent);
@@ -16,7 +19,7 @@ export default function SlideTextEditor() {
     if (!currentSlide) {
         return (
             <div className="h-full flex items-center justify-center p-4 text-gray-400">
-                <p>No hay slide seleccionado</p>
+                <p>{t('noSlide')}</p>
             </div>
         );
     }
@@ -37,7 +40,7 @@ export default function SlideTextEditor() {
                         Slide {currentSlideIndex + 1}
                     </h3>
                     <p className="text-xs text-gray-500">
-                        Edita el contenido de este slide
+                        {t('editSlide')}
                     </p>
                 </div>
 
@@ -45,14 +48,14 @@ export default function SlideTextEditor() {
                 {currentSlide.title !== undefined && (
                     <div>
                         <label className="block text-xs font-medium text-gray-700 mb-2">
-                            Título
+                            {t('slideTitle')}
                         </label>
                         <textarea
                             value={currentSlide.title}
                             onChange={(e) => handleContentChange('title', e.target.value)}
                             rows={4}
                             className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                            placeholder="Título del slide"
+                            placeholder={t('slideTitle')}
                         />
                     </div>
                 )}
@@ -61,14 +64,14 @@ export default function SlideTextEditor() {
                 {currentSlide.body !== undefined && (
                     <div>
                         <label className="block text-xs font-medium text-gray-700 mb-2">
-                            Cuerpo
+                            {t('slideBody')}
                         </label>
                         <textarea
                             value={currentSlide.body}
                             onChange={(e) => handleContentChange('body', e.target.value)}
                             rows={6}
                             className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                            placeholder="Contenido del slide"
+                            placeholder={t('slideBody')}
                         />
                     </div>
                 )}
@@ -77,14 +80,14 @@ export default function SlideTextEditor() {
                 {currentSlide.label !== undefined && (
                     <div>
                         <label className="block text-xs font-medium text-gray-700 mb-2">
-                            Etiqueta
+                            {t('slideLabel')}
                         </label>
                         <input
                             type="text"
                             value={currentSlide.label}
                             onChange={(e) => handleContentChange('label', e.target.value)}
                             className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Tutorial, Consejo, etc."
+                            placeholder={t('slideLabel')}
                         />
                     </div>
                 )}
@@ -93,14 +96,14 @@ export default function SlideTextEditor() {
                 {currentSlide.cta_text !== undefined && (
                     <div>
                         <label className="block text-xs font-medium text-gray-700 mb-2">
-                            CTA
+                            {t('slideCta')}
                         </label>
                         <input
                             type="text"
                             value={currentSlide.cta_text}
                             onChange={(e) => handleContentChange('cta_text', e.target.value)}
                             className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Call to action"
+                            placeholder={t('slideCta')}
                         />
                     </div>
                 )}
@@ -109,14 +112,14 @@ export default function SlideTextEditor() {
                 {currentSlide.number !== undefined && (
                     <div>
                         <label className="block text-xs font-medium text-gray-700 mb-2">
-                            Número
+                            {t('slideNumber')}
                         </label>
                         <input
                             type="text"
                             value={currentSlide.number}
                             onChange={(e) => handleContentChange('number', e.target.value)}
                             className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Número del slide"
+                            placeholder={t('slideNumber')}
                         />
                     </div>
                 )}
@@ -125,14 +128,14 @@ export default function SlideTextEditor() {
                 {currentSlide.tag !== undefined && (
                     <div>
                         <label className="block text-xs font-medium text-gray-700 mb-2">
-                            Tag
+                            {t('slideTag')}
                         </label>
                         <input
                             type="text"
                             value={currentSlide.tag}
                             onChange={(e) => handleContentChange('tag', e.target.value)}
                             className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Tag del slide"
+                            placeholder={t('slideTag')}
                         />
                     </div>
                 )}

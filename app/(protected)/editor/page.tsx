@@ -12,20 +12,16 @@ import CompactBrandKit from '@/components/features/editor/CompactBrandKit';
 import UserAvatar from '@/components/UserAvatar';
 import InactivityLogout from '@/components/InactivityLogout';
 import { useBrandKitSync } from '@/hooks/useBrandKitSync';
-import Logo from '@/components/ui/Logo';
+import { useTranslations } from '@/lib/useTranslations';
 
 /**
  * Página del Editor Desktop/Mobile
  * Ruta: /editor
- * 
- * Desktop (>= 768px): Layout de 3 columnas
- * - Izquierda: Editor de texto del slide
- * - Centro: Canvas Preview (grande)
- * - Derecha: Templates (scroll) + Brand Kit (compacto)
- * 
- * Mobile (< 768px): Canvas + Tabs (Slides/Design)
  */
 export default function EditorPage() {
+    const t = useTranslations('editor');
+    const tCommon = useTranslations('common');
+
     const router = useRouter();
     const slides = useCarouselStore((state) => state.slides);
     const [activeTab, setActiveTab] = useState<'slides' | 'design'>('design');
@@ -56,9 +52,9 @@ export default function EditorPage() {
                     {/* Logo/Title */}
                     <div>
                         <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                            Simply Carousel
+                            {tCommon('appName')}
                         </h1>
-                        <p className="text-xs text-gray-500 hidden sm:block">Paso 2: Edita tu carrusel</p>
+                        <p className="text-xs text-gray-500 hidden sm:block">{t('step')}</p>
                     </div>
 
                     {/* Right side: Avatar + Action buttons */}
@@ -72,21 +68,21 @@ export default function EditorPage() {
                                 onClick={() => router.push('/generator')}
                                 className="px-3 md:px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-all"
                             >
-                                <span className="hidden sm:inline">← Volver</span>
+                                <span className="hidden sm:inline">{t('back')}</span>
                                 <span className="sm:hidden">←</span>
                             </button>
                             <button
                                 onClick={() => router.push('/preview')}
                                 className="px-3 md:px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all shadow-md"
                             >
-                                <span className="hidden sm:inline">Finalizar →</span>
+                                <span className="hidden sm:inline">{t('finish')}</span>
                                 <span className="sm:hidden">✓</span>
                             </button>
                         </div>
                     </div>
                 </header>
 
-                {/* Main content - NUEVO LAYOUT */}
+                {/* Main content */}
                 <div className="flex-1 flex overflow-hidden">
                     {/* DESKTOP LAYOUT (>= 768px) - 3 columnas */}
                     <div className="hidden md:flex flex-1">
@@ -123,20 +119,20 @@ export default function EditorPage() {
                                 <button
                                     onClick={() => setActiveTab('slides')}
                                     className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === 'slides'
-                                            ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
-                                            : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+                                        ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                                        : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
                                         }`}
                                 >
-                                    Slides
+                                    {t('slides')}
                                 </button>
                                 <button
                                     onClick={() => setActiveTab('design')}
                                     className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === 'design'
-                                            ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
-                                            : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+                                        ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                                        : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
                                         }`}
                                 >
-                                    Diseño
+                                    {t('design')}
                                 </button>
                             </div>
 
