@@ -502,6 +502,11 @@ export const arrowMinimal: Template = {
                     autoFit: true,
                     minFontSize: 48,
                     zIndex: 9,
+
+                    emphasisStyle: {
+                        fontWeight: 900,
+                        color: '#000000',
+                    },
                 },
                 body: {
                     enabled: true,

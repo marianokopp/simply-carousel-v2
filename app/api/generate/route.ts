@@ -12,6 +12,8 @@ import { canCreateCarousel } from '@/lib/subscriptions';
  *   "prompt": "tema del carrusel",
  *   "slideCount": 5 | 7 | 10
  * }
+ * 
+ * Los errores devuelven un errorCode que el cliente traduce
  */
 export async function POST(request: Request) {
     try {
@@ -22,14 +24,14 @@ export async function POST(request: Request) {
         // Validar inputs
         if (!prompt || typeof prompt !== 'string') {
             return NextResponse.json(
-                { error: 'El campo "prompt" es requerido y debe ser texto' },
+                { errorCode: 'PROMPT_REQUIRED' },
                 { status: 400 }
             );
         }
 
         if (!slideCount || ![5, 7, 10].includes(slideCount)) {
             return NextResponse.json(
-                { error: 'El campo "slideCount" debe ser 5, 7 o 10' },
+                { errorCode: 'INVALID_SLIDE_COUNT' },
                 { status: 400 }
             );
         }
@@ -37,7 +39,7 @@ export async function POST(request: Request) {
         // Validar que el prompt no esté vacío
         if (prompt.trim().length === 0) {
             return NextResponse.json(
-                { error: 'El prompt no puede estar vacío' },
+                { errorCode: 'PROMPT_EMPTY' },
                 { status: 400 }
             );
         }
@@ -45,7 +47,7 @@ export async function POST(request: Request) {
         // Validar longitud del prompt
         if (prompt.length > 500) {
             return NextResponse.json(
-                { error: 'El prompt no puede exceder 500 caracteres' },
+                { errorCode: 'PROMPT_TOO_LONG' },
                 { status: 400 }
             );
         }
@@ -53,7 +55,7 @@ export async function POST(request: Request) {
         // Verificar que la API key esté configurada
         if (!process.env.ANTHROPIC_API_KEY) {
             return NextResponse.json(
-                { error: 'API key de Anthropic no configurada en el servidor' },
+                { errorCode: 'API_KEY_ERROR' },
                 { status: 500 }
             );
         }
@@ -64,7 +66,7 @@ export async function POST(request: Request) {
 
         if (!user) {
             return NextResponse.json(
-                { error: 'Debes estar autenticado para generar carruseles' },
+                { errorCode: 'AUTH_REQUIRED' },
                 { status: 401 }
             );
         }
@@ -75,7 +77,7 @@ export async function POST(request: Request) {
         if (!limitCheck.allowed) {
             return NextResponse.json(
                 {
-                    error: limitCheck.reason,
+                    errorCode: 'LIMIT_REACHED',
                     limit: limitCheck.limit,
                     currentCount: limitCheck.currentCount,
                     requiresUpgrade: limitCheck.requiresUpgrade
@@ -104,11 +106,17 @@ export async function POST(request: Request) {
     } catch (error: any) {
         console.error('Error en /api/generate:', error);
 
-        // Retornar error con mensaje apropiado
+        // Detectar rate limit
+        if (error.status === 429 || error.message?.includes('rate')) {
+            return NextResponse.json(
+                { errorCode: 'RATE_LIMIT' },
+                { status: 429 }
+            );
+        }
+
+        // Error genérico
         return NextResponse.json(
-            {
-                error: error.message || 'Error al generar el carrusel. Intenta de nuevo.'
-            },
+            { errorCode: 'GENERIC_ERROR' },
             { status: 500 }
         );
     }

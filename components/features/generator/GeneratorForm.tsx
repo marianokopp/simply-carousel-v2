@@ -20,6 +20,24 @@ export default function GeneratorForm() {
     const setSlides = useCarouselStore((state) => state.setSlides);
 
     /**
+     * Mapea códigos de error de la API a claves de traducción
+     */
+    const translateErrorCode = (errorCode: string): string => {
+        const errorMap: Record<string, string> = {
+            'AUTH_REQUIRED': t('errorAuth'),
+            'PROMPT_REQUIRED': t('errorPromptRequired'),
+            'PROMPT_EMPTY': t('errorPromptEmpty'),
+            'PROMPT_TOO_LONG': t('errorPromptTooLong'),
+            'INVALID_SLIDE_COUNT': t('errorSlideCount'),
+            'API_KEY_ERROR': t('errorApiKey'),
+            'LIMIT_REACHED': t('errorLimitReached'),
+            'RATE_LIMIT': t('errorRateLimit'),
+            'GENERIC_ERROR': t('errorGeneric'),
+        };
+        return errorMap[errorCode] || t('errorGeneric');
+    };
+
+    /**
      * Maneja el submit del formulario
      */
     const handleSubmit = async (e: React.FormEvent) => {
@@ -48,7 +66,11 @@ export default function GeneratorForm() {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.error || t('errorGeneric'));
+                // Traducir código de error si existe
+                const errorMessage = data.errorCode
+                    ? translateErrorCode(data.errorCode)
+                    : (data.error || t('errorGeneric'));
+                throw new Error(errorMessage);
             }
 
             // Guardar slides en Zustand

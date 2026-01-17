@@ -123,7 +123,15 @@
         "tip2": "Use numbers in your description (e.g., \"5 strategies...\")",
         "tip3": "Mention the outcome you want to achieve",
         "errorEmpty": "Please enter a topic for your carousel",
-        "errorGeneric": "Error generating carousel"
+        "errorGeneric": "Error generating carousel",
+        "errorAuth": "You must be authenticated to generate carousels",
+        "errorPromptRequired": "Prompt field is required",
+        "errorPromptEmpty": "Prompt cannot be empty",
+        "errorPromptTooLong": "Prompt cannot exceed 500 characters",
+        "errorSlideCount": "Slide count must be 5, 7, or 10",
+        "errorApiKey": "Server configuration error",
+        "errorLimitReached": "You have reached your carousel limit",
+        "errorRateLimit": "Too many requests. Try again in a few minutes."
     },
     "editor": {
         "title": "Simply Carousel",

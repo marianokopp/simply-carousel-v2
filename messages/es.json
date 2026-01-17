@@ -123,7 +123,15 @@
         "tip2": "Usa números en tu descripción (Ej: \"5 estrategias...\")",
         "tip3": "Menciona el resultado que quieres lograr",
         "errorEmpty": "Por favor ingresa un tema para tu carrusel",
-        "errorGeneric": "Error al generar el carrusel"
+        "errorGeneric": "Error al generar el carrusel",
+        "errorAuth": "Debes estar autenticado para generar carruseles",
+        "errorPromptRequired": "El campo prompt es requerido",
+        "errorPromptEmpty": "El prompt no puede estar vacío",
+        "errorPromptTooLong": "El prompt no puede exceder 500 caracteres",
+        "errorSlideCount": "El campo slideCount debe ser 5, 7 o 10",
+        "errorApiKey": "Error de configuración del servidor",
+        "errorLimitReached": "Has alcanzado el límite de carruseles",
+        "errorRateLimit": "Muchas solicitudes. Intenta en unos minutos."
     },
     "editor": {
         "title": "Simply Carousel",
